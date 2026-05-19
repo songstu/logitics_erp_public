@@ -1,19 +1,23 @@
+'use client'
+import baseApi from "@/api/baseApi";
 import s from"./page.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Page() {
 
-    const [employeeList, setEmployeeList] = useState([
-        {
-            no:1,
-            employeeNo:"EMP-001",
-            employeeName: "김철수",
-            department:"인사팀",
-            employeeStatus:"팀장",
-            hireDate:"2019.03.02"
+    const [employees, setEmployees] = useState([])
 
+    useEffect(() => {
+
+        const getEmployee = async () => {
+            const response = await baseApi.get("/api/v1/employees");
+            console.log(response.data.data);
+            setEmployees(response.data.data);
         }
-    ])
+
+        getEmployee();
+
+    }, []);
 
     return (
         <div className={s.pageWrap}>
@@ -62,11 +66,11 @@ export default function Page() {
                         </div>
                         <div className={s.actionButtons}>
                             <button className={s.excelBtn}>
-                                <img src="" alt="Excel Download" />
+                                <img src="#" alt="Excel Download" />
                                 <p>엑셀 다운로드</p>
                             </button>
                             <button className={s.newBtn}>
-                                <img src="" alt="plus, 신규등록" />
+                                <img src="#" alt="plus, 신규등록" />
                                 <p>신규등록</p>
                             </button>
                         </div>
@@ -74,7 +78,7 @@ export default function Page() {
 
                     <div className={s.searchCard}>
                         <div className={s.searchTitleRow}>
-                            <img src="" alt="search, 검색조건" />
+                            <img src="#" alt="search, 검색조건" />
                             <h4>검색조건</h4>
                         </div>
                         <fieldset className={s.searchFields}>
@@ -85,30 +89,30 @@ export default function Page() {
                             <div className={s.department}>
                                 <label htmlFor="department">사원번호</label>
                                 <select name="department" id="department">
-                                    <option value="">전체</option>
+                                    <option value="#">전체</option>
                                     <option value="???">??부</option>
                                 </select>
                             </div>
                             <div className={s.position}>
                                 <label htmlFor="position">직급</label>
                                 <select name="position" id="position">
-                                    <option value="">전체</option>
+                                    <option value="#">전체</option>
                                     <option value="???">팀원</option>
                                 </select>
                             </div>
                             <div className={s.employeeStatus}>
                                 <label htmlFor="employee-status-code">직급</label>
                                 <select name="employeeStatus" id="employee-status-code">
-                                    <option value="">재직중</option>
+                                    <option value="#">재직중</option>
                                     <option value="???">도비는 자유에요</option>
                                 </select>
                             </div>
                             <button className={s.searchBtn}>
-                                <img src="" alt="search" />
+                                <img src="#" alt="search" />
                                 <p>조회</p>
                             </button>
                             <button className={s.resetBtn}>
-                                <img src="" alt="reset" />
+                                <img src="#" alt="reset" />
                                 <p>초기화</p>
                             </button>
                         </fieldset>
@@ -116,21 +120,41 @@ export default function Page() {
 
                     <div className={s.tableCard}>
                         <div className={s.tableHeader}>
-                            <div>No</div>
-                            <div>사원번호</div>
-                            <div>성명</div>
-                            <div>부서</div>
-                            <div>직급</div>
-                            <div>입사일</div>
-                            <div>연락처</div>
-                            <div>이메일</div>
-                            <div>재직상태</div>
-                            <div>관리</div>
+                            <table>
+                                <tr>
+                                    <td>NO</td>
+                                    <td>사원번호</td>
+                                    <td>성명</td>
+                                    <td>부서</td>
+                                    <td>직급</td>
+                                    <td>입사일</td>
+                                    <td>연락처</td>
+                                    <td>이메일</td>
+                                    <td>재직상태</td>
+                                    <td>관리</td>
+                                </tr>
+                            </table>
                         </div>
-                        
+                        <table>
+                            {employees.map((item, index) => (
+                                <tr>
+                                    <td>{index + 1}</td>
+                                    <td>{item.employeeNo}</td>
+                                    <td>{item.name}</td>
+                                    <td>부서</td>
+                                    <td>직급</td>
+                                    <td>입사일</td>
+                                    <td>연락처</td>
+                                    <td>이메일</td>
+                                    <td>재직상태</td>
+                                    <td>관리</td>
+                                </tr>
+                            ))}
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     )
 }
+// http://localhost:33000/swagger-ui/index.html
