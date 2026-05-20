@@ -1,27 +1,32 @@
-'use client'
-import baseApi from "@/api/baseApi";
+
 import s from"./page.module.css";
-import { useEffect, useState } from "react";
+import Nav from"@/component/common/Nav.jsx";
+import Aside from"@/component/common/Aside.jsx";
+import Table from"@/component/common/Table.jsx";
+
 
 export default function Page() {
 
-    const [employees, setEmployees] = useState([])
+    // const [employees, setEmployees] = useState([])
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const getEmployee = async () => {
-            const response = await baseApi.get("/api/v1/employees");
-            console.log(response.data.data);
-            setEmployees(response.data.data);
-        }
+    //     const getEmployee = async () => {
+    //         const response = await baseApi.get("/api/v1/employees");
+    //         console.log(response.data.data);
+    //         setEmployees(response.data.data);
+    //     }
 
-        getEmployee();
+    //     getEmployee();
 
-    }, []);
+    // }, []);
 
     return (
         <div className={s.pageWrap}>
-            <div className={s.header}>
+
+            <Nav/>
+
+            {/* <nav className={s.header}>
                 <div className={s.logoArea}>
                     <div className={s.logoIcon}>
                         <img src="/BriefcaseBusiness.png" alt="Briefcase Business" />
@@ -46,15 +51,45 @@ export default function Page() {
                         <img src="/LogOut.png" alt="Log Out" />
                     </div>
                 </div>
-            </div>
+            </nav> */}
+
+
 
             <div className={s.body}>
-                <div className={s.sidebar}>
-                    <div className={s.group}>인사정보</div>
-                    <div className={s.group}>경조비</div>
-                    <div className={s.group}>증명서</div>
-                </div>
-                <div className={s.mainContent}>
+
+                <Aside
+                    dummy={
+                        [
+                            {
+                                menu1:{icon:'/User.png', menu1Name:'인사정보'},
+                                menu2:['인사정보등록', '사원명수/인사기록카드', '인사발령등록']
+                            },
+                            {
+                                menu1:{icon:'/HeartHandshake.png', menu1Name:'경조비관리'},
+                                menu2:['경조비신청', '경조비신청현황']
+                            },
+                            {
+                                menu1:{icon:'/FileText.png', menu1Name:'증명서관리'},
+                                menu2:['증명서발급']
+                            }
+                        ]
+                    }
+                />
+                {/* <div className={s.sidebar}>
+                    <p className={s.group}>인사정보</p>
+                    <ul className={s.info}>
+                        <li>인사정보등록</li>
+                    </ul>
+                    <p className={s.group}>경조비</p>
+                    <p className={s.group}>증명서</p>
+                </div> */}
+
+
+                <Table
+                    columns={['NO', '사원번호', '성명', '부서', '직급', '입사일', '연락처', '이메일', '재직상태', '관리']}
+                />
+
+                {/* <div className={s.mainContent}>
                     <div className={s.breadcrumb}>
                         <p>홈</p>
                     </div>
@@ -119,8 +154,8 @@ export default function Page() {
                     </div>
 
                     <div className={s.tableCard}>
-                        <div className={s.tableHeader}>
-                            <table>
+                        <table>
+                            <thead>
                                 <tr>
                                     <td>NO</td>
                                     <td>사원번호</td>
@@ -133,26 +168,38 @@ export default function Page() {
                                     <td>재직상태</td>
                                     <td>관리</td>
                                 </tr>
-                            </table>
-                        </div>
-                        <table>
-                            {employees.map((item, index) => (
-                                <tr>
-                                    <td>{index + 1}</td>
-                                    <td>{item.employeeNo}</td>
-                                    <td>{item.name}</td>
-                                    <td>부서</td>
-                                    <td>직급</td>
-                                    <td>입사일</td>
-                                    <td>연락처</td>
-                                    <td>이메일</td>
-                                    <td>재직상태</td>
-                                    <td>관리</td>
-                                </tr>
-                            ))}
+                            </thead>
+                            <tbody>
+                                {employees.map((item, index) => (
+                                    <tr key={index}>
+                                        <td>{index + 1}</td>
+                                        <td>{item.employeeNo}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.department}</td>
+                                        <td>{item.position}</td>
+                                        <td>{item.hireDate}</td>
+                                        <td>{item.phone}</td>
+                                        <td>{item.email}</td>
+                                        <td>{item.employeeStatusCode}</td>
+                                        <td><button className={s.put}>수정</button></td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                            <tfoot>
+                                <td className={s.countPost}>총 {employees.length}건</td>
+                                <td>
+                                    <div className={s.pagination}>
+                                        <div className={s.prev}>&lt;</div>
+                                        <div className="p1">1</div>
+                                        <div className="p2">2</div>
+                                        <div className="p3">3</div>
+                                        <div className={s.next}>&gt;</div>
+                                    </div>
+                                </td>
+                            </tfoot>
                         </table>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     )

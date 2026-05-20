@@ -13,10 +13,9 @@
 }
 
 .header{
-    width: 1440px;
+    width: 100%;
     height: 56px;
     margin: 0;
-    padding: 0 24px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -24,6 +23,7 @@
     font-family: sans-serif;
 }
 .logoArea{
+    width: 210px;
     font-size: 16px;
     padding: 0 24px;
     display: flex;
@@ -48,7 +48,7 @@
     flex-direction: row;
     align-items: center;
 }
-.gnb > div{
+.gnb > li{
     padding: 0 24px;
     height: 56px;
     line-height: 56px;
@@ -57,7 +57,7 @@
     color: #93C5FD;
     cursor: pointer;
 }
-.gnb > div:hover {
+.gnb > li:hover {
     background-color: #2D5F9E;
     color: #fff;
 }
@@ -67,6 +67,7 @@
     flex-direction: row;
     align-items: center;
     margin-left: auto;
+    padding-right: 24px;
 }
 .noticeIcon{
     width: 18px;
@@ -104,4 +105,10 @@
     width: 16px;
 }
 
-/* (#F1F5F9) */
+
+
+.body{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
