@@ -86,7 +86,46 @@ export default function Page() {
 
 
                 <Table
-                    columns={['NO', '사원번호', '성명', '부서', '직급', '입사일', '연락처', '이메일', '재직상태', '관리']}
+                    columns={['NO', '사원번호', '성명', '부서', '직급', '입사일', '연락처', '이메일', '재직상태', '관리']} 
+                    breadcrumb={['인사관리', '인사정보', '인사정보등록']}
+                    employees={[
+                        {employeeNo:'EMP-001', 
+                            name:'김철수',
+                            department:'인사팀',
+                            position:'팀장',
+                            hireDate:'2019.03.02',
+                            phone:'010-1234-5678',
+                            email:'kim@company.com',
+                            employeeStatusCode:'재직중'
+                        },
+                        {employeeNo:'EMP-002 ', 
+                            name:'이명희',
+                            department:'경영지원팀',
+                            position:'과장',
+                            hireDate:'2018.07.15',
+                            phone:'010-9876-5432',
+                            email:'lee@company.com',
+                            employeeStatusCode:'재직중'
+                        },
+                        {employeeNo:'EMP-003', 
+                            name:'박민준',
+                            department:'개발팀',
+                            position:'대리',
+                            hireDate:'2021.08.01',
+                            phone:'010-5555-7777',
+                            email:'park@company.com',
+                            employeeStatusCode:'휴직중'
+                        },
+                        {employeeNo:'EMP-004', 
+                            name:'최지영',
+                            department:'영업팀',
+                            position:'사원',
+                            hireDate:'2023.01.09',
+                            phone:'010-3333-4444',
+                            email:'choi@company.com',
+                            employeeStatusCode:'재직중'
+                        }
+                    ]}
                 />
 
                 {/* <div className={s.mainContent}>
