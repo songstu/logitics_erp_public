@@ -14,7 +14,15 @@
     gap: 6px;
     font-size: 12px;
 }
-.breadcrumb p:last-child{
+.breadcrumb span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    color: #6B7280;
+    font-weight: 400;
+}
+.breadcrumb span:last-child p{
     color: #2563EB;
     font-weight: 500;
 }
@@ -49,7 +57,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 6px;
     font-size: 14px;
     padding: 10px 14px;
@@ -111,12 +119,14 @@
 }
 .searchFields > div > input, .searchFields > div > select{
     padding: 9px 12px;
+    line-height: 100%;
     border: 1px solid #D1D5DB;
     border-radius: 6px;
     outline: none;
     font-size: 13px;
     transition: border-color 0.2s ease-in-out;
 }
+.searchFields > div > select{cursor: pointer;}
 .searchFields > div > input:focus, .searchFields > div > select:focus{
     border-color: #9CA3AF;
 }
@@ -130,35 +140,148 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 6px;
-    padding: 10.5px 20px;
+    padding: 9px 20px;
     border-radius: 6px;
     font-size: 13px;
     white-space: nowrap;
+    cursor: pointer;
 }
 .searchBtn{
+    width: 83px;
     background-color: #1B3A6B;
+    font-weight: 900;
     color: #fff;
 }
 .resetBtn{
+    width: 87px;
     background-color: #fff;
     border: 1px solid #D1D5DB;
     color: #6B7280 ;
-}
-.searchBtn img, .resetBtn img{
-    width: 13px;
-    height: 13px;
 }
 
 .tableCard{
     width: 100%;
     border: 1px solid #E5E7EB;
     border-radius: 8px;
+    overflow: hidden;
 }
 .tableCard table{
     width: 100%;
 }
-.재직중{
+.tableCard thead{
+    background-color: #F1F5F9;
+    border: none;
+}
+.tableCard thead th{
+    height: 42px;
+    font-size: 12px;
+    font-weight: 900;;
+    color: #6B7280;
+    line-height: 100%;
+}
+.tableCard thead th.no{width: 60px;}
+.tableCard thead th.employeeNo{width: 100px;}
+.tableCard thead th.name{width: 72px;}
+.tableCard thead th.department{width: 110px;}
+.tableCard thead th.position{width: 72px;}
+.tableCard thead th.hireDate{width: 96px;}
+.tableCard thead th.phone{width: 120px;}
+.tableCard thead th.email{width: 384px;}
+.tableCard thead th.employeeStatusCode{width: 80px;}
+.tableCard thead th.put{width: 96px;}
+
+.tableCard table tr td, .tableCard table tr th{padding: 13.5px 0;}
+.tableCard table tr td{
+    text-align: center;
+    white-space: nowrap;
+}
+.tableCard table td.email{text-align: left;}
+
+.tableCard table tr td:first-child, .tableCard table tr th:first-child{padding-left: 16px;}
+.tableCard table tr td:last-child, .tableCard table tr th:last-child{padding-right: 16px;}
+
+.tableCard tbody{
+    background-color: #fff;
+    color: #6B7280;
+}
+.tableCard tbody > tr > td{
+    border-top: 1px solid #E5E7EB;
+    color: #6B7280;
+    font-size: 13px;
+    align-items: center;
+    justify-content: center;
+}
+.tableCard tbody td.employeeStatusCode p{
+    border: none;
+    border-radius: 999px;
+    padding: 3px 10px;
+    margin: 0 14.5px;
+    font-size: 11px;
     font-weight: 900;
+}
+.tableCard tbody td.employeeStatusCode.working p{background-color: #DCFCE7;color: #16A34A;}
+.tableCard tbody td.employeeStatusCode.onLeave p{background-color: #FEF3C7;color: #D97706;}
+.tableCard tbody td.employeeStatusCode.retirement p {background-color: #F3F4F6;color: #4B5563; font-weight: 800;}
+
+.tableCard tbody td.put button{
+    width: 39px;
+    background-color: #EFF6FF;
+    color: #2563EB;
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    padding: 3px 8px;
+    cursor: pointer;
+}
+
+.working{
+    font-weight: 900;
+}
+
+.tableCard tfoot{
+    width: 100%;
+    border-top: 1px solid #E5E7EB;
+    background-color: #fff;
+}
+.tableCard tfoot td{
+    height: 48px;
+    line-height: 100%;
+}
+
+.countPost{
+    font-size: 13px;
+    line-height: 100%;
+    font-weight: 400;
+    color: #6B7280;
+}
+
+
+.pagination{
+    width: 156px;
+    height: 28px;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+.pagination div{
+    border: 1px solid #E5E7EB;
+    border-radius: 4px;
+    width: 28px;
+    height: 28px;
+    text-align: center;
+    line-height: 26px;
+    font-size: 12px;
+    color: #6B7280;
+    background-color: #fff;
+}
+.pagination .currentPage{
+    color: #fff;
+    background-color: #1B3A6B;
+    border: none;
+}
+.pagination > .prev, .pagination > .next{
+    padding: 6.5px;
 }

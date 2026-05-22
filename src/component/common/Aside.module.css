@@ -5,6 +5,10 @@
     height: calc(100vh - 56px);
     background-color:#1E293B;
 }
+.sidebar > ul > li img{
+    width: 13px;
+    height: 13px;
+}
 .group{
     width: 100%;
     height: 40px;
@@ -17,6 +21,7 @@
     font-size: 12px;
     font-weight: 700;
     background-color: #162032;
+    cursor: pointer;
 }
 .sub{
     height: 36px;
@@ -26,6 +31,7 @@
     font-size: 13px;
     position: relative;
     font-weight: 400;
+    cursor: pointer;
 }
 .sub:after{
     content: "";
@@ -39,11 +45,19 @@
     transform: translateY(-50%);
     left: 32px;
 }
-.sub:hover{
+.sub.currentPage{
     background-color: #2A3F5C;
     color: #fff;
     font-weight: 500;
 }
-.sub:hover:after{
+.sub.currentPage:after{
     background-color: #3B82F6;
+}
+
+.sub:not(.currentPage):hover{
+    background-color: #24334A;
+    color: #F1F5F9;
+}
+.sub:not(.currentPage):hover:after {
+    background-color: #94A3B8;
 }

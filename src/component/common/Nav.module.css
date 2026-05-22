@@ -39,9 +39,8 @@
     justify-content: center;
     align-items: center;
 }
-.logoIcon img{
-    vertical-align: text-bottom;
-    width: 20px;
+.logoIcon{
+    height: 20px;
 }
 .gnb{
     display: flex;
@@ -57,9 +56,13 @@
     color: #93C5FD;
     cursor: pointer;
 }
-.gnb > li:hover {
+.gnb > li.currentPage {
     background-color: #2D5F9E;
     color: #fff;
+}
+.gnb > li:not(.currentPage):hover {
+    background-color: #244A85;
+    color: #F1F5F9;
 }
 .userInfo{
     display: flex;

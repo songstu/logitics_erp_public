@@ -1,4 +1,5 @@
 'use client'
+import { ChevronLeft, ChevronRight, Download, House, Plus, RotateCcw, Search } from "lucide-react";
 // import baseApi from "@/api/baseApi";
 // import { useEffect, useState } from "react";
 import s from"./Table.module.css";
@@ -43,10 +44,10 @@ export default function Table({breadcrumb, columns, employees}) {
     return (
         <div className={s.mainContent}>
             <div className={s.breadcrumb}>
-                <img src="/House.png" alt="home" />
+                <House size={12} color="#9CA3AF" />
                 {breadcrumb.map((item, index) => (
                     <span key={index}>
-                        <img src="/ChevronRight.png" alt="화살표" />
+                        <ChevronRight size={12} color="#9CA3AF" />
                         <p>{item}</p>
                     </span>
                 ))}
@@ -59,11 +60,11 @@ export default function Table({breadcrumb, columns, employees}) {
                 </div>
                 <div className={s.actionButtons}>
                     <button className={s.excelBtn}>
-                        <img src="/Download.png" alt="Excel Download" />
+                       <Download size={14} color="#374151" />
                         <p>엑셀 다운로드</p>
                     </button>
                     <button className={s.newBtn}>
-                        <img src="/Plus.png" alt="plus, 신규등록" />
+                        <Plus size={14} color="#FFFFFF" />
                         <p>신규등록</p>
                     </button>
                 </div>
@@ -71,7 +72,7 @@ export default function Table({breadcrumb, columns, employees}) {
 
             <div className={s.searchCard}>
                 <div className={s.searchTitleRow}>
-                    <img src="/Search.png" alt="search, 검색조건" />
+                    <Search size={14} color="#1B3A6B" />
                     <h4>검색조건</h4>
                 </div>
                 <fieldset className={s.searchFields}>
@@ -108,11 +109,11 @@ export default function Table({breadcrumb, columns, employees}) {
                         </select>
                     </div>
                     <button className={s.searchBtn}>
-                        <img src="/Search2.png" alt="search" />
+                        <Search size={13} color="#ffffff" />
                         <p>조회</p>
                     </button>
                     <button className={s.resetBtn}>
-                        <img src="/RotateCcw.png" alt="reset" />
+                        <RotateCcw size={13} color="#6B7280" style={{flexShrink:0}}/>
                         <p>초기화</p>
                     </button>
                 </fieldset>
@@ -123,7 +124,7 @@ export default function Table({breadcrumb, columns, employees}) {
                     <thead>
                         <tr>
                             {columns.map((item, index) => (
-                                <th key={index}>{item}</th>
+                                <th key={index} className={s[item.classifyEn]}>{item.textKo}</th>
                             ))}
                             {/* <td>NO</td>
                             <td>사원번호</td>
@@ -143,26 +144,28 @@ export default function Table({breadcrumb, columns, employees}) {
                                 <td className={s.no}>{index + 1}</td>
                                 <td className={s.employeeNo}>{item.employeeNo}</td>
                                 <td className={s.name}>{item.name}</td>
-                                <td className={s[item.department]}>{item.department}</td>
-                                <td className={s[item.position]}>{item.position}</td>
+                                <td className={`${s.department} ${s[item.department.classifyEn]}`}>{item.department.textKo}</td>
+                                <td className={`${s.position} ${s[item.position.classifyEn]}`}>{item.position.textKo}</td>
                                 <td className={s.hireDate}>{item.hireDate}</td>
                                 <td className={s.phone}>{item.phone}</td>
                                 <td className={s.email}>{item.email}</td>
-                                <td className={s[item.employeeStatusCode]}>{item.employeeStatusCode}</td>
+                                <td className={`${s.employeeStatusCode} ${s[item.employeeStatusCode.classifyEn]}`}><p>{item.employeeStatusCode.textKo}</p></td>
                                 <td className={s.put}><button>수정</button></td>
                             </tr>
                         ))}
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td className={s.countPost}>총 {employees.length}건</td>
-                            <td>
+                            <td className={s.countPost} colSpan={1}>총 {employees.length}건</td>
+                            <td colSpan={7}></td>
+                            <td colSpan={2}>
                                 <div className={s.pagination}>
-                                    <div className={s.prev}>&lt;</div>
+                                    {/* 테이블을 포함하여 페이지네이션은 차후 수정/보완 필요 */}
+                                    <div className={s.prev}><ChevronLeft size={13} color="#9CA3AF" /></div>
                                     {Array.from({length:Math.ceil(employees.length / 10)}).map((_, index) => (
-                                        <div key={index}>{index+1}</div>
+                                        <div key={index} className={s.currentPage}>{index+1}</div>
                                     ))}
-                                    <div className={s.next}>&gt;</div>
+                                    <div className={s.next}><ChevronRight size={13} color="#9CA3AF" /></div>
                                 </div>
                             </td>
                         </tr>

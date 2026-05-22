@@ -30,7 +30,7 @@ export default function Aside({dummy}) {
                         </li>
 
                         {item.menu2.map((subItem, subIndex) => (
-                            <li className={s.sub} key={subIndex}>{subItem}</li>
+                            <li className={`${s.sub} ${subItem === '인사정보등록' ? s.currentPage : ''}`} key={subIndex}>{subItem}</li>
                         ))}
                     </ul>
                 ))}
