@@ -1,10 +1,22 @@
+'use client'
 
 import { Banknote, Clock, Eye, EyeOff, Lock, LogIn, Mail, ShieldCheck, Users } from "lucide-react";
 import s from"./page.module.css";
 import Nav from"@/component/common/Nav.jsx";
+import { useState } from "react";
+import baseApi from "@/api/baseApi";
 
 
 export default function Page() {
+
+    const [loginInfo, setLoginInfo] = useState();
+
+    const goLogin = async () => {
+        const res = await baseApi.post('/api/v1/employees/login', loginInfo);
+        localStorage.setItem("키값", "넣을값");
+        const 로컬스토리지꺼낸데이터 = localStorage.getItem('키값');
+        // resister에서 api 호출 전에 토큰 값도 같이 던져준다
+    }
 
     return (
         <div className={s.pageWrap}>
@@ -90,14 +102,26 @@ export default function Page() {
                                 <label htmlFor="email">이메일</label>
                                 <div className={s.ei}>
                                     <Mail color="#9CA3AF" size={18}/>
-                                    <input type="text" name="email" id="email" placeholder="이메일 주소를 입력하세요"/>
+                                    <input 
+                                        type="text" 
+                                        name="email" 
+                                        id="email" 
+                                        placeholder="이메일 주소를 입력하세요"
+                                        onChange={(e) => setLoginInfo(prev => ({...prev, email: e.target.value}))}
+                                    />
                                 </div>
                             </div>
                             <div className={s.pf}>
                                 <label htmlFor="password">비밀번호</label>
                                 <div className={s.pi}>
                                     <Lock color="#9CA3AF" size={18}/>
-                                    <input type="password" name="password" id="password" placeholder="비밀번호를 입력하세요"/>
+                                    <input 
+                                        type="password" 
+                                        name="password" 
+                                        id="password" 
+                                        placeholder="비밀번호를 입력하세요"
+                                        onChange={(e) => setLoginInfo(prev => ({...prev, password: e.target.value}))}
+                                    />
                                     <div className={s.passwordToggle}>
                                         <input type="checkbox" id="passwordToggleInput" className={s.passwordToggleInput} />
                                         <label htmlFor="passwordToggleInput" className={s.passwordToggleLabel}>
@@ -116,7 +140,7 @@ export default function Page() {
                             </div>
                         </fieldset>
                         <div className={s.actions}>
-                            <div className={s.loginBtn}>
+                            <div className={s.loginBtn} onClick={() => goLogin()}>
                                 <LogIn color="#ffffff" size={18}/>
                                 로그인
                             </div>

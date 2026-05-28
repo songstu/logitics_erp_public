@@ -1,12 +1,12 @@
 'use client'
 import { ChevronLeft, ChevronRight, Download, Plus} from "lucide-react";
-// import baseApi from "@/api/baseApi";
-// import { useEffect, useState } from "react";
+import baseApi from "@/api/baseApi";
+import { useEffect, useState } from "react";
 import s from"./Table.module.css";
 import Breadcrumb from "./breadcrumb.jsx";
 import SearchCard from "./SearchCard.jsx";
 
-export default function Table({breadcrumb, crP, columns, employees}) {
+export default function Table({breadcrumb, crP, columns}) {
 
     // const dummyColumn= ['NO', '사원번호', '성명', '부서', '직급', '입사일', '연락처', '이메일', '재직상태', '관리']
 
@@ -27,20 +27,20 @@ export default function Table({breadcrumb, crP, columns, employees}) {
 
 
 
-    // {dummy}
-    // const [employees, setEmployees] = useState([])
+    
+    const [employees, setEmployees] = useState([])
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     const getEmployee = async () => {
-    //         const response = await baseApi.get("/api/v1/employees");
-    //         console.log(response.data.data);
-    //         setEmployees(response.data.data);
-    //     }
+        const getEmployee = async () => {
+            const response = await baseApi.get("/api/v1/employees");
+            console.log(response.data.data);
+            setEmployees(response.data.data);
+        }
 
-    //     getEmployee();
+        getEmployee();
 
-    // }, []);
+    }, []);
 
 
     return (
@@ -89,7 +89,7 @@ export default function Table({breadcrumb, crP, columns, employees}) {
                         </tr>
                     </thead>
                     <tbody>
-                        {employees.map((item, index) => (
+                        {/* {employees.map((item, index) => (
                             <tr key={index}>
                                 <td className={s.no}>{index + 1}</td>
                                 <td className={s.employeeNo}>{item.employeeNo}</td>
@@ -100,6 +100,20 @@ export default function Table({breadcrumb, crP, columns, employees}) {
                                 <td className={s.phone}>{item.phone}</td>
                                 <td className={s.email}>{item.email}</td>
                                 <td className={`${s.employeeStatusCode} ${s[item.employeeStatusCode.classifyEn]}`}><p>{item.employeeStatusCode.textKo}</p></td>
+                                <td className={s.put}><button>수정</button></td>
+                            </tr>
+                        ))} */}
+                        {employees.map((item, index) => (
+                            <tr key={index}>
+                                <td className={s.no}>{index + 1}</td>
+                                <td className={s.employeeNo}>{item.employeeNo}</td>
+                                <td className={s.name}>{item.name}</td>
+                                <td className={s.department}>{item.department}</td>
+                                <td className={s.position}>item.position</td>
+                                <td className={s.hireDate}>item.hireDate</td>
+                                <td className={s.phone}>item.phone</td>
+                                <td className={s.email}>item.email</td>
+                                <td className={s.employeeStatusCode}><p>item.employeeStatusCode</p></td>
                                 <td className={s.put}><button>수정</button></td>
                             </tr>
                         ))}
