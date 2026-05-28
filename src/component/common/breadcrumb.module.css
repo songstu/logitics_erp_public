@@ -1,0 +1,23 @@
+.breadcrumb{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 6px;
+    font-size: 12px;
+}
+.breadcrumb span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    color: #6B7280;
+    font-weight: 400;
+}
+.breadcrumb span:last-child p{
+    color: #2563EB;
+    font-weight: 500;
+}
+.breadcrumb span p{
+    cursor: pointer;
+}

@@ -1,10 +1,12 @@
 'use client'
-import { ChevronLeft, ChevronRight, Download, House, Plus, RotateCcw, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight, Download, Plus} from "lucide-react";
 // import baseApi from "@/api/baseApi";
 // import { useEffect, useState } from "react";
 import s from"./Table.module.css";
+import Breadcrumb from "./breadcrumb.jsx";
+import SearchCard from "./SearchCard.jsx";
 
-export default function Table({breadcrumb, columns, employees}) {
+export default function Table({breadcrumb, crP, columns, employees}) {
 
     // const dummyColumn= ['NO', '사원번호', '성명', '부서', '직급', '입사일', '연락처', '이메일', '재직상태', '관리']
 
@@ -43,25 +45,20 @@ export default function Table({breadcrumb, columns, employees}) {
 
     return (
         <div className={s.mainContent}>
-            <div className={s.breadcrumb}>
-                <House size={12} color="#9CA3AF" />
-                {breadcrumb.map((item, index) => (
-                    <span key={index}>
-                        <ChevronRight size={12} color="#9CA3AF" />
-                        <p>{item}</p>
-                    </span>
-                ))}
-            </div>
+            
+            <Breadcrumb 
+                breadcrumb={breadcrumb}
+            />
             
             <div className={s.pageHeaderRow}>
                 <div className={s.pageTitle}>
-                    <h2>인사정보등록</h2>
+                    <h2>{crP}</h2>
                     <span>직원의 인사정보를 등록하고 관리합니다.</span>
                 </div>
                 <div className={s.actionButtons}>
                     <button className={s.excelBtn}>
                        <Download size={14} color="#374151" />
-                        <p>엑셀 다운로드</p>
+                        <p>PDF 다운로드</p>
                     </button>
                     <button className={s.newBtn}>
                         <Plus size={14} color="#FFFFFF" />
@@ -70,54 +67,7 @@ export default function Table({breadcrumb, columns, employees}) {
                 </div>
             </div>
 
-            <div className={s.searchCard}>
-                <div className={s.searchTitleRow}>
-                    <Search size={14} color="#1B3A6B" />
-                    <h4>검색조건</h4>
-                </div>
-                <fieldset className={s.searchFields}>
-                    <div className={s.employeeNo}>
-                        <label htmlFor="employee_no">사원번호</label>
-                        <input type="text" id="employee_no" placeholder="전체"/>
-                    </div>
-                    <div className={s.department}>
-                        <label htmlFor="department">부서</label>
-                        <select name="department" id="department">
-                            <option value="#">전체</option>
-                            <option value="HR">인사팀</option>
-                            <option value="MS">경영지원팀</option>
-                            <option value="Dev">개발팀</option>
-                            <option value="Sal">영업팀</option>
-                        </select>
-                    </div>
-                    <div className={s.position}>
-                        <label htmlFor="position">직급</label>
-                        <select name="position" id="position">
-                            <option value="#">전체</option>
-                            <option value="SM">과장</option>
-                            <option value="AM">팀장</option>
-                            <option value="SS">대리</option>
-                            <option value="Stf">사원</option>
-                        </select>
-                    </div>
-                    <div className={s.employeeStatus}>
-                        <label htmlFor="employee-status-code">재직상태</label>
-                        <select name="employeeStatus" id="employee-status-code">
-                            <option value="working">재직중</option>
-                            <option value="onLeave">휴직중</option>
-                            <option value="retreat">도비는 자유에요</option>
-                        </select>
-                    </div>
-                    <button className={s.searchBtn}>
-                        <Search size={13} color="#ffffff" />
-                        <p>조회</p>
-                    </button>
-                    <button className={s.resetBtn}>
-                        <RotateCcw size={13} color="#6B7280" style={{flexShrink:0}}/>
-                        <p>초기화</p>
-                    </button>
-                </fieldset>
-            </div>
+            <SearchCard />
 
             <div className={s.tableCard}>
                 <table>

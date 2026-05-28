@@ -7,6 +7,8 @@ import Table from"@/component/common/Table.jsx";
 
 export default function Page() {
 
+    const crP='인사정보등록'
+
     // const [employees, setEmployees] = useState([])
 
     // useEffect(() => {
@@ -24,7 +26,17 @@ export default function Page() {
     return (
         <div className={s.pageWrap}>
 
-            <Nav/>
+            <Nav
+                menu={
+                    [
+                        {classifyEn:'departmentTap', textKo:'인사관리'},
+                        {classifyEn:'attendanceTap', textKo:'근태관리'},
+                        {classifyEn:'payrollTap', textKo:'급여관리'},
+                        {classifyEn:'dailyWorkerTap', textKo:'일용직관리'}
+                    ]
+                }
+                crP={'인사관리'}
+            />
 
             {/* <nav className={s.header}>
                 <div className={s.logoArea}>
@@ -74,6 +86,7 @@ export default function Page() {
                             }
                         ]
                     }
+                    crP ={crP}
                 />
                 {/* <div className={s.sidebar}>
                     <p className={s.group}>인사정보</p>
@@ -87,6 +100,7 @@ export default function Page() {
 
                 <Table
                     breadcrumb={['인사관리', '인사정보', '인사정보등록']}
+                    crP ={crP}
                     columns={[
                         {classifyEn:'no', textKo:'NO'}, 
                         {classifyEn:'employeeNo', textKo:'사원번호'}, 

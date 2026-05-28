@@ -1,7 +1,7 @@
 
 import s from"./Aside.module.css";
 
-export default function Aside({dummy}) {
+export default function Aside({dummy, crP}) {
 
     // const dummy = [
     //     {
@@ -30,7 +30,7 @@ export default function Aside({dummy}) {
                         </li>
 
                         {item.menu2.map((subItem, subIndex) => (
-                            <li className={`${s.sub} ${subItem === '인사정보등록' ? s.currentPage : ''}`} key={subIndex}>{subItem}</li>
+                            <li className={`${s.sub} ${subItem === (crP) ? s.currentPage : ''}`} key={subIndex}>{subItem}</li>
                         ))}
                     </ul>
                 ))}

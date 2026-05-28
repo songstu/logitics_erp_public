@@ -1,0 +1,86 @@
+
+.searchCard{
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #E5E7EB;
+    background-color: #fff;
+    gap: 12px;
+}
+.searchTitleRow{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1B3A6B;
+}
+.searchFields{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 4px;
+    gap: 16px;
+}
+.searchFields > div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+.searchFields > div > label{
+    color: #374151;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+.searchFields > div > input, .searchFields > div > select{
+    padding: 9px 12px;
+    line-height: 100%;
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
+    outline: none;
+    font-size: 13px;
+    transition: border-color 0.2s ease-in-out;
+}
+.searchFields > div > select.all{
+    color: #111827;
+}
+.searchFields > div > select{cursor: pointer;}
+.searchFields > div > input:focus, .searchFields > div > select:focus{
+    border-color: #9CA3AF;
+}
+.searchFields > div > input:placeholder, .searchFields > div > select{
+    color: #9CA3AF;
+}
+.searchFields > div > select > option{
+    color: #374151;
+}
+.searchBtn, .resetBtn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.searchBtn{
+    width: 83px;
+    background-color: #1B3A6B;
+    font-weight: 900;
+    color: #fff;
+}
+.resetBtn{
+    width: 87px;
+    background-color: #fff;
+    border: 1px solid #D1D5DB;
+    color: #6B7280 ;
+}
