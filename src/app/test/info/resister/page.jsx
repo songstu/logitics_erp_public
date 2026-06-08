@@ -3,6 +3,7 @@ import s from"./page.module.css";
 import Nav from"@/component/common/Nav.jsx";
 import Aside from"@/component/common/Aside.jsx";
 import Table from"@/component/common/Table.jsx";
+import Modal1 from "@/component/common/Modal1";
 
 
 export default function Page() {
@@ -24,6 +25,8 @@ export default function Page() {
     // }, []);
 
     return (
+        <>
+        <Modal1 />
         <div className={s.pageWrap}>
 
             <Nav
@@ -275,6 +278,7 @@ export default function Page() {
                 </div> */}
             </div>
         </div>
+        </>
     )
 }
 // http://localhost:33000/swagger-ui/index.html

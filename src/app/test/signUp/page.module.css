@@ -50,7 +50,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    align-items: center;
+    text-align: center;
 }
 .headline h1{
     font-size: 38px;
@@ -120,56 +120,67 @@
 .formHeader{
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
 }
 .formHeader h2{
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 700;
     color: #111827;
-    line-height: 36px;
+    line-height: 33.6px;
 }
 .formHeader p{
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 400;
     color: #6B7280;
-    line-height: 18px;
+    line-height: 16.8px;
 }
-.fields{
+.formBody{
     display: flex;
     flex-direction: column;
     gap: 14px;
 }
-.ef, .pf{
+.formBody > div:not(.pwHint){
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+}
+.formBody > div > div{
     display: flex;
     flex-direction: column;
     gap: 6px;
+    width: calc(50% - 7px);
 }
-.ef > label, .pf > label{
+.formBody > div > div > label{
     font-size: 13px;
     font-weight: 500;
-    color: #374151;
     line-height: 15.6px;
+    color: #374151;
 }
-.ei, .pi{
+.formBody > div > div > div, .formBody > div > div > div, .pwI, .cpwI{
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 10px;
-    border: 1px solid #D1D5DB;
+    padding: 0 14px;
     border-radius: 10px;
-    background-color: #fff;
-    padding: 16px;
-}
-.ei input{width: 340px;}
-.pi input{width: 312px;}
-.ei input::placeholder, .pi input::placeholder{
-    font-size: 14px;
-    font-weight: 400px;
+    border: 1px solid #D1D5DB;
+    width: 100%;
+    height: 48px;
     color: #9CA3AF;
+    font-size: 14px;
+    font-weight: 400;
     line-height: 16.8px;
 }
-.ei input:focus, .pi input:focus{outline: none;}
-.ei:has(input:focus), .pi:has(input:focus){border-color: #9CA3AF;}
+.formBody > div > div > div > select{width: 100%; cursor: pointer;}
+.formBody > div > div > div > select option{
+    color: #111827;
+}
+
+
+.formBody > div > div > div > input:focus, .formBody > div > div > div > select:focus{outline: none;}
+.formBody > div > div > div:has(input:focus){border-color: #9CA3AF;}
+/* .pwI input:focus, .cpwI input:focus{outline: none;}
+.pwI:has(input:focus), .cpwI:has(input:focus){border-color: #9CA3AF;} */
 
 .passwordToggleInput {display: none;}
 .passwordToggleLabel {cursor: pointer;}
@@ -178,89 +189,105 @@
 .passwordToggle .passwordToggleInput:checked + .passwordToggleLabel .eye { display: inline; }
 .passwordToggle .passwordToggleInput:checked + .passwordToggleLabel .eyeoff { display: none; }
 
-.opts{
+.pwHint{
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
+    color: #9CA3AF;    
+    font-size: 12px;
+    line-height: 14.4px;
+    font-weight: 400;
+}
+
+.terms{
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding: 14px 16px;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    background-color: #F9FAFB;
 }
-.rem{
-    display: flex;
-    flex-direction: row;
-    gap: 6px;
-    align-items: center;
+.terms input{
+    display: none;
 }
-.rem > label{
+
+.terms label, .terms span{
     font-size: 13px;
     font-weight: 400;
-    color: #6B7280;
-    cursor: pointer;
+    line-height: 15.6px;
 }
-.findPassword{
-    font-size: 13px;
-    font-weight: 500;
-    color: #2563EB;
-    cursor: pointer;
-}
-.actions{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-.loginBtn{
-    width: 100%;
-    height: 50px;
+.terms label{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
     gap: 8px;
+    color: #374151; 
+    cursor: pointer;
+}
+.terms label p{
+    width: 422px;
+}
+
+.checkBoxRedesign{
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    background-color: #1E3A5F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.terms span{
+    color: #2563EB;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.submitAction{
+    width: 100%;
+}
+.submitBtn{
+    width: 100%;
+    height: 50px;
+    background-color: #1E3A5F;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
     border: none;
     border-radius: 10px;
-    background-color: #1E3A5F;
     color: #fff;
     font-size: 15px;
     font-weight: 600;
-}
-.actions > span{
-    font-size: 13px;
-    font-weight: 400px;
-    color: #9CA3AF;
-    position: relative;
-}
-.actions > span::before, .actions > span::after{
-    content: "";
-    width: 176px;
-    height: 1px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #E5E7EB;
-}
-.actions > span::before{left: -188px;}
-.actions > span::after{right: -188px;}
-
-.kakaoLogin{
-    width: 400px;
     cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
 }
-
-.sl{
+.submitBtn:disabled{
+    cursor: default;
+    background-color: gray;
+}
+.loginLink{
+    width: 100%;
     display: flex;
     flex-direction: row;
     gap: 6px;
+    font-size: 14px;
     align-items: center;
     justify-content: center;
 }
-.sl p{
-    font-size: 14px;
+.loginLink p{
     font-weight: 400;
     color: #6B7280;
 }
-.sl span{
-    font-size: 14px;
+.loginLink span{
     font-weight: 600;
     color: #2563EB;
     cursor: pointer;
 }
+
+

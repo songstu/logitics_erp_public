@@ -1,0 +1,258 @@
+.overlay{
+    position: absolute;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+    user-select: none;
+    /* display: none; */
+}
+.overlay.on{
+    display: block;
+}
+.modal{
+    width: 600px;
+    height: 80vh;
+    margin: 10vh auto;
+    background-color: #fff;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 8px 40px 0px #00000026;
+    position: relative;
+    z-index: 10000;
+}
+.modalHeader{
+    width: 100%;
+    height: 56px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    background-color: #1B3A6B;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.titleGruop{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+}
+.closeBtn{
+    background-color: #2D5F9E;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+
+.modalBody{
+    overflow-y: scroll;
+    position: absolute;
+    top: 56px;
+    left: 0;
+    width: 100%;
+    height: calc(80vh - (56px * 2));
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.modalBody fieldset{
+    border: none;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+}
+.modalBody > fieldset{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.modalBody legend{
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+.modalBody > fieldset > legend{
+    padding-left: 11px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #E5E7EB;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16.8px;
+    color: #1B3A6B;
+    position: relative;
+}
+.modalBody > fieldset > legend::before{
+    content: "";
+    width: 3px;
+    height: 16px;
+    background-color: #1B3A6B;
+    border-radius: 999px;
+    position: absolute;
+    top: calc(50% - 4px);
+    transform: translateY(-50%);
+    left: 0;
+}
+.modalBody input[type='text'], .modalBody input[type='date'], .modalBody select{
+    padding: 10px 12px;
+    height: 36px;
+    background-color: #fff;
+    outline: 1px solid #D1D5DB;
+    border: none;
+    border-radius: 6px;
+}
+.employeeStatusCodeRadio{
+    padding: 10px 12px;
+    background-color: #fff;
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
+    
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+    white-space: nowrap;
+    color: #6B7280;
+    font-size: 13px;
+    font-weight: 400;
+}
+.modalBody input[type='text']::placeholder, .modalBody input[type='date'], .modalBody select{
+    font-size: 13px;
+    font-weight: 400;
+    color: #9CA3AF;
+}
+.modalBody input[type='text']:disabled{background-color: #F9FAFB;}
+.modalBody input[type='text']:focus{outline: 1px solid #9ea5af;}
+
+.modalBody > fieldset > div{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+}
+.fields, .employeeStatusCodeField{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+}
+.fields > label, .employeeStatusCodeLegend{
+    font-size: 13px;
+    font-weight: 700;
+    color: #374151;
+}
+.postalCodeInput{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+.employeeStatusCodeRadio > div{
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+}
+.retreat{
+    overflow: hidden;
+}
+.employeeStatusCodeRadio > div > input:checked + label{
+    font-weight: 500;
+    color: #111827;
+}
+/* 라디오버튼 리디자인은 진짜 귀찮아서 패쓰ㅡ */
+
+.postalCodeSearchBtn{
+    background-color: #1B3A6B;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    border: none;
+    height: 36px;
+    cursor: pointer;
+
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+
+.modalFooter{
+    width: 100%;
+    height: 56px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    background-color: #F8FAFC;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.hint{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    font-size: 12px;
+}
+.hint p{
+    color: #9CA3AF;
+    font-weight: 400;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+.buttons button{
+    height: 36px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    padding: 0 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.cancelBtn{
+    border: 1px solid #D1D5DB;
+    background-color: #fff;
+    color: #374151;
+}
+.saveBtn{
+    border: none;
+    background-color: #1B3A6B;
+    color: #fff;
+}
+
+
+span.nesMarker{
+    color: #EF4444;
+    font-weight: 700;
+}
