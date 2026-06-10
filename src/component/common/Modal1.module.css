@@ -6,10 +6,12 @@
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 9999;
     user-select: none;
-    /* display: none; */
 }
 .overlay.on{
     display: block;
+}
+.overlay.off{
+    display: none;
 }
 .modal{
     width: 600px;

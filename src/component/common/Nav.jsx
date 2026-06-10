@@ -16,7 +16,7 @@ export default function Nav({menu, crP}) {
                 </div>
                 <ul className={s.gnb}>
                     {menu?.map((item, index) => (
-                        <li className={item.textKo === (crP) ? s.currentPage : ''} key={index}>{item.textKo}</li>
+                        <li className={item.textKo === (crP.crPNav) ? s.currentPage : ''} key={index}>{item.textKo}</li>
                     ))}
                 </ul>
                     {/* <li className={`${s.departmentTap} ${s.currentPage}`}>인사관리</li>

@@ -3,20 +3,46 @@
 import { Banknote, Clock, Eye, EyeOff, Lock, LogIn, Mail, ShieldCheck, Users } from "lucide-react";
 import s from"./page.module.css";
 import Nav from"@/component/common/Nav.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import baseApi from "@/api/baseApi";
 
 
 export default function Page() {
 
-    const [loginInfo, setLoginInfo] = useState();
+    const [loginInfo, setLoginInfo] = useState({});
 
-    const goLogin = async () => {
-        const res = await baseApi.post('/api/v1/employees/login', loginInfo);
-        localStorage.setItem("키값", "넣을값");
-        const 로컬스토리지꺼낸데이터 = localStorage.getItem('키값');
-        // resister에서 api 호출 전에 토큰 값도 같이 던져준다
-    }
+    // const goLogin = async () => {
+    //     const res = await baseApi.post('/api/v1/employees/login', loginInfo);
+    //     localStorage.setItem("키값", "넣을값");
+    //     const 로컬스토리지꺼낸데이터 = localStorage.getItem('키값');
+    //     // resister에서 api 호출 전에 토큰 값도 같이 던져준다
+    // }
+
+    // const goLogin = async () => {
+    //     const res = await baseApi.post("/api/v1/employees/login", {...loginInfo});
+    //     localStorage.setItem("accessToken", res.data?.data?.accessToken);
+    //     if (accessToken) {
+    //         localStorage.setItem("accessToken", accessToken);
+    //         alert("로그인 성공");
+            
+    //         router.push("/info/resister");
+    //         } else {
+    //         alert("로그인 실패");
+    //     }
+    // }
+
+    // useEffect(() => {
+    //     const getEmployees = async () => {
+    //         const token = localStorage.getItem('accessToken');
+    //         const res = await baseApi.get('/api/v1/employees', {
+    //             headers: {
+    //                 'Authorization': `Bearer ${token}`
+    //             }
+    //         });
+    //         console.log(res);
+    //     }
+    //     getEmployees();
+    // }, []);
 
     return (
         <div className={s.pageWrap}>

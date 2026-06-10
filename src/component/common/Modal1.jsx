@@ -1,17 +1,25 @@
+"use client"
 import { Save, Search, UserPlus, X } from "lucide-react";
 import s from"./Modal1.module.css";
+import { useState } from "react";
 
-export default function Modal1() {
+export default function Modal1({isOn, onClose}) {
+
+    // const [isOn, setIsOn] = useState(false);
+
+    // const handleToggleOn = () => {
+    //     setIsOn(!isOn); 
+    // };
 
     return(
-        <div className={s.overlay}>
+        <div className={`${s.overlay} ${isOn ? s.on : s.off}`}>
             <div className={s.modal}>
                 <div className={s.modalHeader}>
                     <div className={s.titleGruop}>
                         <UserPlus color="#60A5FA" size={18}/>
                         <h4>인사정보등록</h4>
                     </div>
-                    <div className={s.closeBtn}>
+                    <div className={s.closeBtn} onClick={onClose}>
                         <X color="#ffffff" size={16}/>
                     </div>
                 </div>
@@ -24,7 +32,7 @@ export default function Modal1() {
                                 <input type="text" id="employeeNo" disabled placeholder="자동생성" />
                             </div>
                             <div className={`${s.nameFieldField} ${s.fields}`}>
-                                <label htmlFor="name">성명<span className={s.nesMarker}>*</span></label>
+                                <label htmlFor="name">성명<span className={s.nesMarker}> *</span></label>
                                 <input type="text" id="name" placeholder="홍길동" />
                             </div>
                         </div>
@@ -68,7 +76,7 @@ export default function Modal1() {
                                     </div>
                                     <div className={s.retreat}>
                                         <input type="radio" name="employeeStatusCode" id="retreat" value="retreat" />
-                                        <label htmlFor="retreat">도비는 자유에요</label>
+                                        <label htmlFor="retreat">퇴직</label>
                                     </div>
                                 </div>
                             </fieldset>
@@ -146,7 +154,7 @@ export default function Modal1() {
                         <p>필수 입력 항목입니다.</p>
                     </div>
                     <div className={s.buttons}>
-                        <button className={s.cancelBtn}>
+                        <button className={s.cancelBtn} onClick={onClose}>
                             <X color="#6B7280" size={14}/>
                             <p>취소</p>
                         </button>

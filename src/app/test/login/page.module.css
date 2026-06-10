@@ -257,6 +257,7 @@
     color: #fff;
     font-size: 15px;
     font-weight: 600;
+    cursor: pointer;
 }
 .actions > span{
     font-size: 13px;

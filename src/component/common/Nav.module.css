@@ -72,6 +72,9 @@
     margin-left: auto;
     padding-right: 24px;
 }
+.userInfo > div{
+    cursor: pointer;
+}
 .noticeIcon{
     width: 18px;
     position: relative;

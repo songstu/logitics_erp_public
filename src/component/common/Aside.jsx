@@ -30,7 +30,7 @@ export default function Aside({dummy, crP}) {
                         </li>
 
                         {item.menu2.map((subItem, subIndex) => (
-                            <li className={`${s.sub} ${subItem === (crP) ? s.currentPage : ''}`} key={subIndex}>{subItem}</li>
+                            <li className={`${s.sub} ${subItem === (crP.crPAsi) ? s.currentPage : ''}`} key={subIndex}>{subItem}</li>
                         ))}
                     </ul>
                 ))}
