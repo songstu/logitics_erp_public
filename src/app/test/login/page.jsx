@@ -39,8 +39,20 @@ export default function Page() {
       });
 
       const accessToken = res.data.data.accessToken;
+
+      const employeeNo = res.data.data.employeeNo;
+      const name = res.data.data.name;
+      const departmentName = res.data.data.departmentName;
+      const position = res.data.data.position;
+
       if (accessToken) {
         localStorage.setItem("accessToken", accessToken);
+
+        localStorage.setItem("employeeNo", employeeNo);
+        localStorage.setItem("name", name);
+        localStorage.setItem("departmentName", departmentName);
+        localStorage.setItem("position", position);
+
         alert("로그인 성공");
 
         router.push("/test/info/resister");
@@ -59,6 +71,11 @@ export default function Page() {
     const getEmployees = async () => {
       try {
         const token = localStorage.getItem("accessToken");
+
+        const employeeNo = localStorage.getItem("employeeNo");
+        const name = localStorage.getItem("name");
+        const departmentName = localStorage.getItem("departmentName");
+        const position = localStorage.getItem("position");
 
         if (!token) return;
 
