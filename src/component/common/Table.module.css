@@ -1,62 +1,61 @@
-.mainContent{
-    width: 1230px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    background-color: #F1F5F9;
+.mainContent {
+  width: 1230px;
+  min-height: calc(100vh - 56px);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #f1f5f9;
 }
 
-
-.pageHeaderRow{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.pageHeaderRow {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
-.pageTitle{
-    display: flex;
-    flex-direction: column;
+.pageTitle {
+  display: flex;
+  flex-direction: column;
 }
-.pageTitle h2{
-    font-size: 20px;
-    font-weight: 700;
-    color: #111827;
+.pageTitle h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
 }
-.pageTitle span{
-    font-size: 13px;
-    font-weight: 400;
-    color: #6B7280;
+.pageTitle span {
+  font-size: 13px;
+  font-weight: 400;
+  color: #6b7280;
 }
-.actionButtons{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
+.actionButtons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
 }
-.actionButtons button{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    font-size: 14px;
-    padding: 10px 14px;
-    box-sizing: border-box;
-    border-radius: 6px;
-    cursor: pointer;
+.actionButtons button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 14px;
+  padding: 10px 14px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  cursor: pointer;
 }
-.excelBtn{
-    font-weight: 500;
-    border: 1px solid #D1D5DB;
-    background-color: #fff;
-    color: #374151;
+.excelBtn {
+  font-weight: 500;
+  border: 1px solid #d1d5db;
+  background-color: #fff;
+  color: #374151;
 }
-.newBtn{
-    font-weight: 900;
-    border: none;
-    background-color: #1B3A6B;
-    color: #fff;
+.newBtn {
+  font-weight: 900;
+  border: none;
+  background-color: #1b3a6b;
+  color: #fff;
 }
-

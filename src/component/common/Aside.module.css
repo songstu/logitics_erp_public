@@ -1,63 +1,62 @@
+.sidebar {
+  width: 210px;
+  min-height: calc(100vh - 56px);
+  height: 100%;
+  background-color: #1e293b;
+}
+.sidebar > ul > li img {
+  width: 13px;
+  height: 13px;
+}
+.group {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  padding: 13.5px 16px;
+  color: #60a5fa;
+  font-size: 12px;
+  font-weight: 700;
+  background-color: #162032;
+  cursor: pointer;
+}
+.sub {
+  height: 36px;
+  line-height: 36px;
+  color: #94a3b8;
+  padding: 0 14px 0 42px;
+  font-size: 13px;
+  position: relative;
+  font-weight: 400;
+  cursor: pointer;
+}
+.sub:after {
+  content: "";
+  width: 4px;
+  height: 4px;
+  border: none;
+  border-radius: 100%;
+  background-color: #475569;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 32px;
+}
+.sub.currentPage {
+  background-color: #2a3f5c;
+  color: #fff;
+  font-weight: 500;
+}
+.sub.currentPage:after {
+  background-color: #3b82f6;
+}
 
-
-.sidebar{
-    width: 210px;
-    height: calc(100vh - 56px);
-    background-color:#1E293B;
-}
-.sidebar > ul > li img{
-    width: 13px;
-    height: 13px;
-}
-.group{
-    width: 100%;
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    align-items: center;
-    padding: 13.5px 16px;
-    color: #60A5FA;
-    font-size: 12px;
-    font-weight: 700;
-    background-color: #162032;
-    cursor: pointer;
-}
-.sub{
-    height: 36px;
-    line-height: 36px;
-    color: #94A3B8;
-    padding: 0 14px 0 42px;
-    font-size: 13px;
-    position: relative;
-    font-weight: 400;
-    cursor: pointer;
-}
-.sub:after{
-    content: "";
-    width: 4px;
-    height: 4px;
-    border: none;
-    border-radius: 100%;
-    background-color: #475569;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 32px;
-}
-.sub.currentPage{
-    background-color: #2A3F5C;
-    color: #fff;
-    font-weight: 500;
-}
-.sub.currentPage:after{
-    background-color: #3B82F6;
-}
-
-.sub:not(.currentPage):hover{
-    background-color: #24334A;
-    color: #F1F5F9;
+.sub:not(.currentPage):hover {
+  background-color: #24334a;
+  color: #f1f5f9;
 }
 .sub:not(.currentPage):hover:after {
-    background-color: #94A3B8;
+  background-color: #94a3b8;
 }

@@ -10,6 +10,13 @@ export default function Modal1({ isOn, onClose }) {
   //     setIsOn(!isOn);
   // };
 
+  const [autoInputs, setAutoInputs] = useState({
+    employeeNo: "",
+    postalCode: "",
+    streetAddress: "",
+  });
+  const { employeeNo, postalCode, streetAddress } = autoInputs;
+
   // [다음주소 api] 2. 주소 선택시 데이터 받기
   const openPostcode = () => {
     if (!window || window === undefined) return;
@@ -17,13 +24,19 @@ export default function Modal1({ isOn, onClose }) {
     const postCode = new window.daum.Postcode({
       oncomplete(data) {
         // 여기서 setter로 처리
-        console.log("선택한 주소 >>> ", data)
+        console.log("선택한 주소 >>> ", data);
+        setAutoInputs({
+          ...autoInputs,
+          ["postalCode"]: data?.zonecode,
+          ["streetAddress"]: data?.address,
+        });
       },
     });
 
     postCode.open();
-
   };
+
+  const [inputValue, setInputValue] = useState("");
 
   return (
     <div className={`${s.overlay} ${isOn ? s.on : s.off}`}>
@@ -45,18 +58,26 @@ export default function Modal1({ isOn, onClose }) {
                 <label htmlFor="employeeNo">
                   사원번호<span className={s.nesMarker}> *</span>
                 </label>
+                {/* CSS용 input */}
                 <input
+                  className={s.autoInput}
                   type="text"
-                  id="employeeNo"
                   disabled
                   placeholder="자동생성"
+                />
+                {/* 서버 전송용 input */}
+                <input
+                  type="hidden"
+                  id="employeeNo"
+                  value={employeeNo}
+                  required
                 />
               </div>
               <div className={`${s.nameFieldField} ${s.fields}`}>
                 <label htmlFor="name">
                   성명<span className={s.nesMarker}> *</span>
                 </label>
-                <input type="text" id="name" placeholder="홍길동" />
+                <input type="text" id="name" placeholder="홍길동" required />
               </div>
             </div>
             <div className={s.row2}>
@@ -64,8 +85,8 @@ export default function Modal1({ isOn, onClose }) {
                 <label htmlFor="department">
                   부서<span className={s.nesMarker}> *</span>
                 </label>
-                <select name="department" id="department">
-                  <option value="#">부서를 선택하세요</option>
+                <select name="department" id="department" required>
+                  <option value="">부서를 선택하세요</option>
                   <option value="HR">인사팀</option>
                   <option value="MS">경영지원팀</option>
                   <option value="Dev">개발팀</option>
@@ -76,8 +97,8 @@ export default function Modal1({ isOn, onClose }) {
                 <label htmlFor="position">
                   직급<span className={s.nesMarker}> *</span>
                 </label>
-                <select name="position" id="position">
-                  <option value="#">직급을 선택하세요</option>
+                <select name="position" id="position" required>
+                  <option value="">직급을 선택하세요</option>
                   <option value="SM">과장</option>
                   <option value="AM">팀장</option>
                   <option value="SS">대리</option>
@@ -90,7 +111,12 @@ export default function Modal1({ isOn, onClose }) {
                 <label htmlFor="hireDate">
                   입사일<span className={s.nesMarker}> *</span>
                 </label>
-                <input type="date" id="hireDate" placeholder="자동생성" />
+                <input
+                  type="date"
+                  id="hireDate"
+                  placeholder="자동생성"
+                  required
+                />
               </div>
               <fieldset className={s.employeeStatusCodeField}>
                 <h4 className={s.employeeStatusCodeLegend}>
@@ -103,6 +129,7 @@ export default function Modal1({ isOn, onClose }) {
                       name="employeeStatusCode"
                       id="working"
                       value="working"
+                      required
                     />
                     <label htmlFor="working">재직중</label>
                   </div>
@@ -112,6 +139,7 @@ export default function Modal1({ isOn, onClose }) {
                       name="employeeStatusCode"
                       id="onLeave"
                       value="onLeave"
+                      required
                     />
                     <label htmlFor="onLeave">휴직중</label>
                   </div>
@@ -121,6 +149,7 @@ export default function Modal1({ isOn, onClose }) {
                       name="employeeStatusCode"
                       id="retreat"
                       value="retreat"
+                      required
                     />
                     <label htmlFor="retreat">퇴직</label>
                   </div>
@@ -135,7 +164,12 @@ export default function Modal1({ isOn, onClose }) {
                 <label htmlFor="phone">
                   휴대폰<span className={s.nesMarker}> *</span>
                 </label>
-                <input type="text" id="phone" placeholder="010-0000-0000" />
+                <input
+                  type="text"
+                  id="phone"
+                  placeholder="010-0000-0000"
+                  required
+                />
               </div>
               <div className={`${s.emailField} ${s.fields}`}>
                 <label htmlFor="email">이메일</label>
@@ -154,12 +188,18 @@ export default function Modal1({ isOn, onClose }) {
                 <label htmlFor="postalCode">우편번호</label>
                 <div className={s.postalCodeInput}>
                   <input
+                    className={`${s.postalCodeInputI} ${postalCode ? "" : s.autoInput}`}
                     type="text"
                     id="postalCode"
-                    disabled
+                    value={postalCode}
+                    readOnly
                     placeholder="우편번호"
                   />
-                  <button className={s.postalCodeSearchBtn} onClick={openPostcode}>
+                  <button
+                    className={s.postalCodeSearchBtn}
+                    type="button" // submit 방지
+                    onClick={openPostcode}
+                  >
                     <Search color="#fff" size={13} />
                     주소검색
                   </button>
@@ -170,9 +210,11 @@ export default function Modal1({ isOn, onClose }) {
               <div className={`${s.streetAddressField} ${s.fields}`}>
                 <label htmlFor="streetAddress">도로명주소</label>
                 <input
+                  className={`${s.streetAddressInput} ${streetAddress ? "" : s.autoInput}`}
                   type="text"
                   id="streetAddress"
-                  disabled
+                  value={streetAddress}
+                  readOnly
                   placeholder="주소검색 후 자동입력"
                 />
               </div>
@@ -201,8 +243,15 @@ export default function Modal1({ isOn, onClose }) {
               </div>
               <div className={`${s.EmergencyRelationField} ${s.fields}`}>
                 <label htmlFor="EmergencyRelation">관계</label>
-                <select id="EmergencyRelation">
-                  <option value="#">관계 선택</option>
+                <select
+                  id="EmergencyRelation"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  style={{
+                    color: `${inputValue.trim() ? "#111827" : "#9ca3af"}`,
+                  }}
+                >
+                  <option value="">관계 선택</option>
                   <option value="Fath">부</option>
                   <option value="Moth">모</option>
                   <option value="GrF">조부</option>

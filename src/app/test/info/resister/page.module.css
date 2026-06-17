@@ -1,114 +1,113 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
 
-.pageWrap{
-    width: 100%;
-    max-width: 1440px;
-    height: 100vh;
-    margin: 0 auto;
-    user-select: none;
-    display: flex;
-    flex-direction: column;
-    font-family: "Noto Sans KR", sans-serif;
-    box-sizing: border-box;
+.pageWrap {
+  width: 100%;
+  max-width: 1440px;
+  min-height: 100vh;
+  height: 100%;
+  margin: 0 auto;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  font-family: "Noto Sans KR", sans-serif;
+  box-sizing: border-box;
 }
 
-.header{
-    width: 100%;
-    height: 56px;
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background: #1B3A6B;
-    font-family: sans-serif;
+.header {
+  width: 100%;
+  height: 56px;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #1b3a6b;
+  font-family: sans-serif;
 }
-.logoArea{
-    width: 210px;
-    font-size: 16px;
-    padding: 18px 24px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 10px;
-    align-items: center;
-    color: #fff;
-    font-weight: 700;
+.logoArea {
+  width: 210px;
+  font-size: 16px;
+  padding: 18px 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  color: #fff;
+  font-weight: 700;
 }
-.logoIcon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.logoIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.logoIcon img{
-    vertical-align: text-bottom;
-    width: 20px;
+.logoIcon img {
+  vertical-align: text-bottom;
+  width: 20px;
 }
-.gnb{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.gnb {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
-.gnb > li{
-    padding: 0 24px;
-    height: 56px;
-    line-height: 56px;
-    font-size: 14px;
-    font-weight: 900;
-    color: #93C5FD;
-    cursor: pointer;
+.gnb > li {
+  padding: 0 24px;
+  height: 56px;
+  line-height: 56px;
+  font-size: 14px;
+  font-weight: 900;
+  color: #93c5fd;
+  cursor: pointer;
 }
 .gnb > li:hover {
-    background-color: #2D5F9E;
-    color: #fff;
+  background-color: #2d5f9e;
+  color: #fff;
 }
-.userInfo{
-    display: flex;
-    gap: 14px;
-    flex-direction: row;
-    align-items: center;
-    margin-left: auto;
-    padding-right: 24px;
+.userInfo {
+  display: flex;
+  gap: 14px;
+  flex-direction: row;
+  align-items: center;
+  margin-left: auto;
+  padding-right: 24px;
 }
-.noticeIcon{
-    width: 18px;
-    position: relative;
+.noticeIcon {
+  width: 18px;
+  position: relative;
 }
-.noticeIcon::after{
-    content: "";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: -14px;
-    display: block;
-    width: 1px;
-    height: 24px;
-    background-color: #3B5F9A;
+.noticeIcon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -14px;
+  display: block;
+  width: 1px;
+  height: 24px;
+  background-color: #3b5f9a;
 }
-.avatar{
-    background-color: #3B82F6;
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 900;
-    margin-left: 14px;
+.avatar {
+  background-color: #3b82f6;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  margin-left: 14px;
 }
-.profile{
-    color: #CBD5E1;
+.profile {
+  color: #cbd5e1;
 }
-.logoutIcon{
-    width: 16px;
+.logoutIcon {
+  width: 16px;
 }
 
-
-
-.body{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
+.body {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
