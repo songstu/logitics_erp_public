@@ -10,6 +10,21 @@ export default function Modal1({ isOn, onClose }) {
   //     setIsOn(!isOn);
   // };
 
+  // [다음주소 api] 2. 주소 선택시 데이터 받기
+  const openPostcode = () => {
+    if (!window || window === undefined) return;
+
+    const postCode = new window.daum.Postcode({
+      oncomplete(data) {
+        // 여기서 setter로 처리
+        console.log("선택한 주소 >>> ", data)
+      },
+    });
+
+    postCode.open();
+
+  };
+
   return (
     <div className={`${s.overlay} ${isOn ? s.on : s.off}`}>
       <div className={s.modal}>
@@ -144,7 +159,7 @@ export default function Modal1({ isOn, onClose }) {
                     disabled
                     placeholder="우편번호"
                   />
-                  <button className={s.postalCodeSearchBtn}>
+                  <button className={s.postalCodeSearchBtn} onClick={openPostcode}>
                     <Search color="#fff" size={13} />
                     주소검색
                   </button>
