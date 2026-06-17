@@ -46,15 +46,13 @@ export default function TableCard({ columns, employees, isOn, onOpen }) {
               <td className={s.no}>{index + 1}</td>
               <td className={s.employeeNo}>{item.employeeNo}</td>
               <td className={s.name}>{item.name}</td>
-              <td className={s.department}>{item.department}</td>
-              <td className={s.position}>{item.position}</td>
+              <td className={s.department}>{item.departmentName}</td>
+              <td className={s.position}>{item.positionName}</td>
               <td className={s.hireDate}>{item.hireDate}</td>
               <td className={s.phone}>{item.phone}</td>
               <td className={s.email}>{item.email}</td>
-              <td
-                className={`${s.employeeStatusCode} ${s[item.employeeStatusCode]}`}
-              >
-                <p>{item.employeeStatusCode}</p>
+              <td className={`${s.employeeStatusCode} ${s[item.status]}`}>
+                <p>{item.status}중</p>
               </td>
               <td className={s.put}>
                 <button onClick={onOpen}>수정</button>

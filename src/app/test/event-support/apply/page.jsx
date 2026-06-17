@@ -39,10 +39,10 @@ export default function Apply({ menu, crP }) {
     });
 
     setApplyTargetInfo({
-      TargetName: "",
+      targetName: "",
       targetRel: "self",
       applicationDate: "",
-      TargetEventPlace: "",
+      targetEventPlace: "",
     });
 
     setApplyTargetBankInfo({
@@ -143,7 +143,7 @@ export default function Apply({ menu, crP }) {
             name="targetRel"
             id="targetRel"
             className={s.targetRelInput}
-            value={applyTargetInfo.targetRel}
+            value={applyTargetInfo?.targetRel}
             onChange={(e) =>
               setApplyTargetInfo((prev) => ({
                 ...prev,
@@ -194,7 +194,7 @@ export default function Apply({ menu, crP }) {
             name="bankName"
             id="bankName"
             className={s.bankNameInput}
-            value={applyTargetBankInfo.bankName}
+            value={applyTargetBankInfo?.bankName}
             onChange={(e) =>
               setApplyTargetBankInfo((prev) => ({
                 ...prev,

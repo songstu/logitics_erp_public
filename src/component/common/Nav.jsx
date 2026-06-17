@@ -3,6 +3,7 @@ import baseApi from "@/api/baseApi";
 import { Bell, BriefcaseBusiness, LogOut } from "lucide-react";
 import s from "./Nav.module.css";
 import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 export default function Nav({ menu, crP }) {
   const [navInfo, setNavInfo] = useState();
@@ -46,7 +47,7 @@ export default function Nav({ menu, crP }) {
         <div className={s.noticeIcon}>
           <Bell size={18} color="#93C5FD" strokeWidth={2} />
         </div>
-        <div className={s.avatar}>{navInfo?.name.slice(0, 1)}</div>
+        <div className={s.avatar}>{navInfo?.name?.slice(0, 1)}</div>
         <div className={s.profile}>
           <p className={s.profileName}>{navInfo?.name}</p>
           <p> | </p>
