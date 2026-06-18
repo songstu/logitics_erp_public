@@ -1,14 +1,24 @@
 "use client";
 import { Save, Search, UserPlus, X } from "lucide-react";
 import s from "./Modal1.module.css";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function Modal1({ isOn, onClose }) {
-  // const [isOn, setIsOn] = useState(false);
+  const modalRef = useRef(null);
+  const scrollBodyRef = useRef(null);
+  const close = () => {
+    onClose();
+    if (modalRef.current) modalRef.current.reset();
 
-  // const handleToggleOn = () => {
-  //     setIsOn(!isOn);
-  // };
+    setAutoInputs({
+      employeeNo: "",
+      postalCode: "",
+      streetAddress: "",
+    });
+    setInputValue("");
+
+    scrollBodyRef.current.scrollTop = 0;
+  };
 
   const [autoInputs, setAutoInputs] = useState({
     employeeNo: "",
@@ -40,17 +50,17 @@ export default function Modal1({ isOn, onClose }) {
 
   return (
     <div className={`${s.overlay} ${isOn ? s.on : s.off}`}>
-      <div className={s.modal}>
+      <form className={s.modal} ref={modalRef}>
         <div className={s.modalHeader}>
           <div className={s.titleGruop}>
             <UserPlus color="#60A5FA" size={18} />
             <h4>인사정보등록</h4>
           </div>
-          <div className={s.closeBtn} onClick={onClose}>
+          <button className={s.closeBtn} onClick={() => close()} type="button">
             <X color="#ffffff" size={16} />
-          </div>
+          </button>
         </div>
-        <div className={s.modalBody}>
+        <div className={s.modalBody} ref={scrollBodyRef}>
           <fieldset className={s.sectionBasic}>
             <legend className={s.sectionTitleBasic}>기본정보</legend>
             <div className={s.row1}>
@@ -277,7 +287,11 @@ export default function Modal1({ isOn, onClose }) {
             <p>필수 입력 항목입니다.</p>
           </div>
           <div className={s.buttons}>
-            <button className={s.cancelBtn} onClick={onClose}>
+            <button
+              className={s.cancelBtn}
+              onClick={() => close()}
+              type="button"
+            >
               <X color="#6B7280" size={14} />
               <p>취소</p>
             </button>
@@ -287,7 +301,7 @@ export default function Modal1({ isOn, onClose }) {
             </button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

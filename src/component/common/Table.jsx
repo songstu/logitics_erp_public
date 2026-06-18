@@ -14,37 +14,6 @@ export default function Table({
   onOpen,
   tableList = [],
 }) {
-  // const dummyColumn= ['NO', '사원번호', '성명', '부서', '직급', '입사일', '연락처', '이메일', '재직상태', '관리']
-
-  // const dummy2= [
-  //     {
-  //         menu1:{icon:'/User.png', menu1Name:'인사정보'},
-  //         menu2:['인사정보등록', '사원명수/인사기록카드', '인사발령등록']
-  //     },
-  //     {
-  //         menu1:{icon:'/HeartHandshake.png', menu1Name:'경조비관리'},
-  //         menu2:['경조비신청', '경조비신청현황']
-  //     },
-  //     {
-  //         menu1:{icon:'/FileText.png', menu1Name:'증명서관리'},
-  //         menu2:['증명서발급']
-  //     }
-  // ]
-
-  // const [employees, setEmployees] = useState([])
-
-  // useEffect(() => {
-
-  //     const getEmployee = async () => {
-  //         const response = await baseApi.get("/api/v1/employees");
-  //         console.log(response.data.data);
-  //         setEmployees(response.data.data);
-  //     }
-
-  //     getEmployee();
-
-  // }, []);
-
   return (
     <div className={s.mainContent}>
       <Breadcrumb breadcrumb={breadcrumb} />

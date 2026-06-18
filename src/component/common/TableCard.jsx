@@ -2,8 +2,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import s from "./TableCard.module.css";
 
 export default function TableCard({ columns, employees, isOn, onOpen }) {
-  // if (!isOn) return null;
-
   return (
     <div className={s.tableCard}>
       <table>
