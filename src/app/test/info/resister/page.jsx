@@ -8,7 +8,7 @@ import { useState, useEffect, useRef } from "react";
 import baseApi from "@/api/baseApi";
 
 export default function Page() {
-  const [isOn, setIsOn] = useState(false);
+  const [modal1IsOn, setModal1IsOn] = useState(false);
 
   const [keyword, setKeyword] = useState();
   const [employeeList, setEmployeeList] = useState([]);
@@ -45,7 +45,7 @@ export default function Page() {
 
   return (
     <>
-      <Modal1 isOn={isOn} onClose={() => setIsOn(false)} />
+      <Modal1 isOn={modal1IsOn} onClose={() => setModal1IsOn(false)} />
       <div className={s.pageWrap}>
         <Nav
           menu={[
@@ -82,9 +82,9 @@ export default function Page() {
           <Table
             breadcrumb={["인사관리", "인사정보", "인사정보등록"]}
             crP={crP}
-            isOn={isOn}
+            isOn={modal1IsOn}
             tableList={employeeList}
-            onOpen={() => setIsOn(true)}
+            onOpen={() => setModal1IsOn(true)}
           />
         </div>
       </div>

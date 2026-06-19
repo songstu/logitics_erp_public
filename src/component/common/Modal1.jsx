@@ -4,21 +4,66 @@ import s from "./Modal1.module.css";
 import { useRef, useState } from "react";
 
 export default function Modal1({ isOn, onClose }) {
-  const modalRef = useRef(null);
   const scrollBodyRef = useRef(null);
+  // 현재는 훈련용으로 state를 사용하나
+  // 나중에는 useForm 학습하여 변경하는 것을 고려
   const close = () => {
-    onClose();
-    if (modalRef.current) modalRef.current.reset();
+    setName("");
+    setDepartment("");
+    setPosition("");
+    setHireDate("");
+    setPhone("");
+    setEmail("");
+    setDetailAddress("");
+    setEmergencyName("");
+    setEmergencyPhone("");
 
     setAutoInputs({
       employeeNo: "",
       postalCode: "",
       streetAddress: "",
     });
-    setInputValue("");
+    setEmergencyRelationValue("");
 
     scrollBodyRef.current.scrollTop = 0;
+    onClose();
   };
+
+  const [name, setName] = useState("");
+  const [department, setDepartment] = useState("");
+  const [position, setPosition] = useState("");
+  const [hireDate, setHireDate] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [detailAddress, setDetailAddress] = useState("");
+  const [EmergencyName, setEmergencyName] = useState("");
+  const [EmergencyPhone, setEmergencyPhone] = useState("");
+
+  const [EmergencyRelationValue, setEmergencyRelationValue] = useState("");
+
+  // onClick 대신 onSubmit 사용
+  // state로 유효성 검사까지 만들기 귀찮음
+  const save = (e) => {
+    e.preventDefault();
+    console.log({
+      employeeNo,
+      name,
+      department,
+      position,
+      hireDate,
+      phone,
+      email,
+      postalCode,
+      streetAddress,
+      detailAddress,
+      employeeStatusCodeRadio,
+      EmergencyName,
+      EmergencyPhone,
+    });
+    close();
+  };
+
+  const [employeeStatusCodeRadio, setEmployeeStatusCodeRadio] = useState("");
 
   const [autoInputs, setAutoInputs] = useState({
     employeeNo: "",
@@ -34,7 +79,7 @@ export default function Modal1({ isOn, onClose }) {
     const postCode = new window.daum.Postcode({
       oncomplete(data) {
         // 여기서 setter로 처리
-        console.log("선택한 주소 >>> ", data);
+        // console.log("선택한 주소 >>> ", data);
         setAutoInputs({
           ...autoInputs,
           ["postalCode"]: data?.zonecode,
@@ -46,11 +91,9 @@ export default function Modal1({ isOn, onClose }) {
     postCode.open();
   };
 
-  const [inputValue, setInputValue] = useState("");
-
   return (
     <div className={`${s.overlay} ${isOn ? s.on : s.off}`}>
-      <form className={s.modal} ref={modalRef}>
+      <form className={s.modal}>
         <div className={s.modalHeader}>
           <div className={s.titleGruop}>
             <UserPlus color="#60A5FA" size={18} />
@@ -70,24 +113,34 @@ export default function Modal1({ isOn, onClose }) {
                 </label>
                 {/* CSS용 input */}
                 <input
-                  className={s.autoInput}
+                  className={`${s.employeeNoInput} ${employeeNo ? "" : s.autoInput}`}
                   type="text"
-                  disabled
+                  readOnly
                   placeholder="자동생성"
+                  value={employeeNo}
                 />
                 {/* 서버 전송용 input */}
                 <input
                   type="hidden"
                   id="employeeNo"
                   value={employeeNo}
-                  required
+                  onChange={(e) => setEmployeeNo(e.target.value)}
+                  // 더미데이터를 넣거나 자동생성 이전에는 필수속성 보류
+                  // required
                 />
               </div>
               <div className={`${s.nameFieldField} ${s.fields}`}>
                 <label htmlFor="name">
                   성명<span className={s.nesMarker}> *</span>
                 </label>
-                <input type="text" id="name" placeholder="홍길동" required />
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="홍길동"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
               </div>
             </div>
             <div className={s.row2}>
@@ -95,7 +148,13 @@ export default function Modal1({ isOn, onClose }) {
                 <label htmlFor="department">
                   부서<span className={s.nesMarker}> *</span>
                 </label>
-                <select name="department" id="department" required>
+                <select
+                  name="department"
+                  id="department"
+                  required
+                  value={department}
+                  onChange={(e) => setDepartment(e.target.value)}
+                >
                   <option value="">부서를 선택하세요</option>
                   <option value="HR">인사팀</option>
                   <option value="MS">경영지원팀</option>
@@ -107,7 +166,13 @@ export default function Modal1({ isOn, onClose }) {
                 <label htmlFor="position">
                   직급<span className={s.nesMarker}> *</span>
                 </label>
-                <select name="position" id="position" required>
+                <select
+                  name="position"
+                  id="position"
+                  required
+                  value={position}
+                  onChange={(e) => setPosition(e.target.value)}
+                >
                   <option value="">직급을 선택하세요</option>
                   <option value="SM">과장</option>
                   <option value="AM">팀장</option>
@@ -126,6 +191,8 @@ export default function Modal1({ isOn, onClose }) {
                   id="hireDate"
                   placeholder="자동생성"
                   required
+                  value={hireDate}
+                  onChange={(e) => setHireDate(e.target.value)}
                 />
               </div>
               <fieldset className={s.employeeStatusCodeField}>
@@ -140,6 +207,10 @@ export default function Modal1({ isOn, onClose }) {
                       id="working"
                       value="working"
                       required
+                      checked={employeeStatusCodeRadio === "working"}
+                      onChange={(e) =>
+                        setEmployeeStatusCodeRadio(e.target.value)
+                      }
                     />
                     <label htmlFor="working">재직중</label>
                   </div>
@@ -150,6 +221,10 @@ export default function Modal1({ isOn, onClose }) {
                       id="onLeave"
                       value="onLeave"
                       required
+                      checked={employeeStatusCodeRadio === "onLeave"}
+                      onChange={(e) =>
+                        setEmployeeStatusCodeRadio(e.target.value)
+                      }
                     />
                     <label htmlFor="onLeave">휴직중</label>
                   </div>
@@ -160,6 +235,10 @@ export default function Modal1({ isOn, onClose }) {
                       id="retreat"
                       value="retreat"
                       required
+                      checked={employeeStatusCodeRadio === "retreat"}
+                      onChange={(e) =>
+                        setEmployeeStatusCodeRadio(e.target.value)
+                      }
                     />
                     <label htmlFor="retreat">퇴직</label>
                   </div>
@@ -179,6 +258,8 @@ export default function Modal1({ isOn, onClose }) {
                   id="phone"
                   placeholder="010-0000-0000"
                   required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
               </div>
               <div className={`${s.emailField} ${s.fields}`}>
@@ -187,6 +268,8 @@ export default function Modal1({ isOn, onClose }) {
                   type="text"
                   id="email"
                   placeholder="example@company.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -236,6 +319,8 @@ export default function Modal1({ isOn, onClose }) {
                   type="text"
                   id="detailAddress"
                   placeholder="상세주소를 입력하세요"
+                  value={detailAddress}
+                  onChange={(e) => setDetailAddress(e.target.value)}
                 />
               </div>
             </div>
@@ -249,16 +334,18 @@ export default function Modal1({ isOn, onClose }) {
                   type="text"
                   id="EmergencyName"
                   placeholder="비상연락처 성명"
+                  value={EmergencyName}
+                  onChange={(e) => setEmergencyName(e.target.value)}
                 />
               </div>
               <div className={`${s.EmergencyRelationField} ${s.fields}`}>
                 <label htmlFor="EmergencyRelation">관계</label>
                 <select
                   id="EmergencyRelation"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
+                  value={EmergencyRelationValue}
+                  onChange={(e) => setEmergencyRelationValue(e.target.value)}
                   style={{
-                    color: `${inputValue.trim() ? "#111827" : "#9ca3af"}`,
+                    color: `${EmergencyRelationValue.trim() ? "#111827" : "#9ca3af"}`,
                   }}
                 >
                   <option value="">관계 선택</option>
@@ -276,6 +363,8 @@ export default function Modal1({ isOn, onClose }) {
                   type="text"
                   id="EmergencyPhone"
                   placeholder="010-0000-0000"
+                  value={EmergencyPhone}
+                  onChange={(e) => setEmergencyPhone(e.target.value)}
                 />
               </div>
             </div>
@@ -295,7 +384,7 @@ export default function Modal1({ isOn, onClose }) {
               <X color="#6B7280" size={14} />
               <p>취소</p>
             </button>
-            <button className={s.saveBtn}>
+            <button className={s.saveBtn} onSubmit={save}>
               <Save color="#ffffff" size={14} />
               <p>저장</p>
             </button>

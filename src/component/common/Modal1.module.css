@@ -146,8 +146,7 @@
 .modalBody option:not([value=""]) {
   color: #111827;
 }
-.modalBody
-  input[type="text"]:not(.postalCodeInputI, .streetAddressInput):focus {
+.modalBody input[type="text"]:not(.autoInput):focus {
   outline: 1px solid #9ea5af;
 }
 
