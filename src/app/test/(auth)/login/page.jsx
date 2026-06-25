@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Banknote,
   Clock,
@@ -16,7 +15,6 @@ import Nav from "@/component/common/Nav.jsx";
 import { useEffect, useState } from "react";
 import baseApi from "@/api/baseApi";
 import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
@@ -24,15 +22,8 @@ export default function Page() {
   const [showPassword, setShowPassword] = useState(false);
 
   const [loginInfo, setLoginInfo] = useState({});
-
-  // const goLogin = async () => {
-  //     const res = await baseApi.post('/api/v1/employees/login', loginInfo);
-  //     localStorage.setItem("키값", "넣을값");
-  //     const 로컬스토리지꺼낸데이터 = localStorage.getItem('키값');
-  //     // resister에서 api 호출 전에 토큰 값도 같이 던져준다
-  // }
-
-  const goLogin = async () => {
+  const goLogin = async (e) => {
+    if (e && e.preventDefault) e.preventDefault();
     try {
       const res = await baseApi.post("/api/v1/employees/login", {
         ...loginInfo,
@@ -86,7 +77,7 @@ export default function Page() {
         });
         console.log(res.data.data);
       } catch (e) {
-        console.error("직원 정보 로드 실패: ", e); // 👈
+        console.error("직원 정보 로드 실패: ", e);
       }
     };
 
@@ -167,7 +158,7 @@ export default function Page() {
           </div>
         </div>
         <div className={s.rightPanel}>
-          <div className={s.formCard}>
+          <form className={s.formCard}>
             <div className={s.formHeader}>
               <h2>로그인</h2>
               <p>계정에 로그인하여 업무를 시작하세요</p>
@@ -247,10 +238,10 @@ export default function Page() {
               </div>
             </fieldset>
             <div className={s.actions}>
-              <div className={s.loginBtn} onClick={() => goLogin()}>
+              <button className={s.loginBtn} type="submit" onClick={goLogin}>
                 <LogIn color="#ffffff" size={18} />
                 로그인
-              </div>
+              </button>
               <span>또는</span>
               <div className={s.kakaoLogin}>
                 <img src="/kakaoLogin.png" alt="카카오 로그인" />
@@ -260,7 +251,7 @@ export default function Page() {
               <p>계정이 없으신가요?</p>
               <span>회원가입 신청</span>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

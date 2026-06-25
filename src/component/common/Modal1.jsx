@@ -2,6 +2,7 @@
 import { Save, Search, UserPlus, X } from "lucide-react";
 import s from "./Modal1.module.css";
 import { useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function Modal1({ isOn, onClose }) {
   const scrollBodyRef = useRef(null);
@@ -17,6 +18,8 @@ export default function Modal1({ isOn, onClose }) {
     setDetailAddress("");
     setEmergencyName("");
     setEmergencyPhone("");
+
+    setEmployeeStatusCode("");
 
     setAutoInputs({
       employeeNo: "",
@@ -41,6 +44,8 @@ export default function Modal1({ isOn, onClose }) {
 
   const [EmergencyRelationValue, setEmergencyRelationValue] = useState("");
 
+  const [employeeStatusCode, setEmployeeStatusCode] = useState("");
+
   // onClick 대신 onSubmit 사용
   // state로 유효성 검사까지 만들기 귀찮음
   const save = (e) => {
@@ -56,14 +61,12 @@ export default function Modal1({ isOn, onClose }) {
       postalCode,
       streetAddress,
       detailAddress,
-      employeeStatusCodeRadio,
+      employeeStatusCode,
       EmergencyName,
       EmergencyPhone,
     });
     close();
   };
-
-  const [employeeStatusCodeRadio, setEmployeeStatusCodeRadio] = useState("");
 
   const [autoInputs, setAutoInputs] = useState({
     employeeNo: "",
@@ -93,7 +96,7 @@ export default function Modal1({ isOn, onClose }) {
 
   return (
     <div className={`${s.overlay} ${isOn ? s.on : s.off}`}>
-      <form className={s.modal}>
+      <form className={s.modal} onSubmit={save}>
         <div className={s.modalHeader}>
           <div className={s.titleGruop}>
             <UserPlus color="#60A5FA" size={18} />
@@ -156,10 +159,10 @@ export default function Modal1({ isOn, onClose }) {
                   onChange={(e) => setDepartment(e.target.value)}
                 >
                   <option value="">부서를 선택하세요</option>
-                  <option value="HR">인사팀</option>
-                  <option value="MS">경영지원팀</option>
-                  <option value="Dev">개발팀</option>
-                  <option value="Sal">영업팀</option>
+                  <option value="인사팀">인사팀</option>
+                  <option value="경영지원팀">경영지원팀</option>
+                  <option value="개발팀">개발팀</option>
+                  <option value="영업팀">영업팀</option>
                 </select>
               </div>
               <div className={`${s.positionField} ${s.fields}`}>
@@ -174,10 +177,10 @@ export default function Modal1({ isOn, onClose }) {
                   onChange={(e) => setPosition(e.target.value)}
                 >
                   <option value="">직급을 선택하세요</option>
-                  <option value="SM">과장</option>
-                  <option value="AM">팀장</option>
-                  <option value="SS">대리</option>
-                  <option value="Stf">사원</option>
+                  <option value="과장">과장</option>
+                  <option value="팀장">팀장</option>
+                  <option value="대리">대리</option>
+                  <option value="사원">사원</option>
                 </select>
               </div>
             </div>
@@ -205,12 +208,10 @@ export default function Modal1({ isOn, onClose }) {
                       type="radio"
                       name="employeeStatusCode"
                       id="working"
-                      value="working"
+                      value="재직중"
                       required
-                      checked={employeeStatusCodeRadio === "working"}
-                      onChange={(e) =>
-                        setEmployeeStatusCodeRadio(e.target.value)
-                      }
+                      checked={employeeStatusCode === "재직중"}
+                      onChange={(e) => setEmployeeStatusCode(e.target.value)}
                     />
                     <label htmlFor="working">재직중</label>
                   </div>
@@ -219,12 +220,10 @@ export default function Modal1({ isOn, onClose }) {
                       type="radio"
                       name="employeeStatusCode"
                       id="onLeave"
-                      value="onLeave"
+                      value="휴직중"
                       required
-                      checked={employeeStatusCodeRadio === "onLeave"}
-                      onChange={(e) =>
-                        setEmployeeStatusCodeRadio(e.target.value)
-                      }
+                      checked={employeeStatusCode === "휴직중"}
+                      onChange={(e) => setEmployeeStatusCode(e.target.value)}
                     />
                     <label htmlFor="onLeave">휴직중</label>
                   </div>
@@ -233,12 +232,10 @@ export default function Modal1({ isOn, onClose }) {
                       type="radio"
                       name="employeeStatusCode"
                       id="retreat"
-                      value="retreat"
+                      value="퇴직"
                       required
-                      checked={employeeStatusCodeRadio === "retreat"}
-                      onChange={(e) =>
-                        setEmployeeStatusCodeRadio(e.target.value)
-                      }
+                      checked={employeeStatusCode === "퇴직"}
+                      onChange={(e) => setEmployeeStatusCode(e.target.value)}
                     />
                     <label htmlFor="retreat">퇴직</label>
                   </div>
@@ -384,7 +381,7 @@ export default function Modal1({ isOn, onClose }) {
               <X color="#6B7280" size={14} />
               <p>취소</p>
             </button>
-            <button className={s.saveBtn} onSubmit={save}>
+            <button className={s.saveBtn} type="submit">
               <Save color="#ffffff" size={14} />
               <p>저장</p>
             </button>

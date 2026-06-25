@@ -1,12 +1,47 @@
 "use client";
+import { toast } from "sonner";
 import s from "./page.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import Nav from "@/component/common/Nav";
+import Aside from "@/component/common/Aside";
+// import Table from "@/component/common/Table";
+import MainContent from "@/component/common/MainContent";
 
-export default function Apply({ menu, crP }) {
+export default function Page() {
   const [applyUserInfo, setApplyUserInfo] = useState();
   const [applyTargetInfo, setApplyTargetInfo] = useState();
   const [applyTargetBankInfo, setApplyTargetBankInfo] = useState();
   const [eventType, setEventType] = useState("본인결혼");
+
+  const [employeeList, setEmployeeList] = useState([]);
+
+  const getEmployees = async () => {
+    const token = localStorage.getItem("accessToken");
+
+    const res = await baseApi.get("/api/v1/employees", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: {
+        keyword: keyword || "",
+        page: 1,
+      },
+    });
+
+    setEmployeeList(res.data.data);
+
+    console.log(res.data.data);
+  };
+
+  const crP = {
+    crPNav: "인사관리",
+    crPAsi: "경조비신청",
+    crPTable: "경조비신청",
+    crPInfo: "경조사 발생 시 경조비를 신청하고 지급 현황을 관리합니다.",
+    plusBtnText: "신규신청",
+  };
+  const breadcrumb = ["인사관리", "경조비관리", "경조비신청"];
 
   const eventTypeList = [
     "본인결혼",
@@ -16,6 +51,9 @@ export default function Apply({ menu, crP }) {
     "배우자상",
     "부모회갑",
   ];
+
+  toast("toast test");
+  useEffect(() => {}, []);
 
   useEffect(() => {
     const employeeNo = localStorage.getItem("employeeNo");
@@ -52,197 +90,249 @@ export default function Apply({ menu, crP }) {
     });
   }, []);
 
-  return (
-    <div className={s.wrap}>
-      <fieldset className={s.applyUserField}>
-        <div className={s.applyUser}>신청자 정보</div>
-        <div className={s.employeeNo}>
-          <input
-            type="text"
-            id="employeeNo"
-            className={s.employeeNoInput}
-            value={applyUserInfo?.employeeNo}
-            readOnly
-          />
-          <label htmlFor="employeeNo">사원번호</label>
-        </div>
-        <div className={s.name}>
-          <input
-            type="text"
-            id="name"
-            className={s.nameInput}
-            value={applyUserInfo?.name}
-            readOnly
-          />
-          <label htmlFor="name">성명</label>
-        </div>
-        <div className={s.employeeNo}>
-          <input
-            type="text"
-            id="departmentName"
-            className={s.departmentName}
-            value={applyUserInfo?.departmentName}
-            readOnly
-          />
-          <label htmlFor="departmentName">부서</label>
-        </div>
-        <div className={s.position}>
-          <input
-            type="text"
-            id="position"
-            className={s.position}
-            value={applyUserInfo?.position}
-            readOnly
-          />
-          <label htmlFor="position">직급</label>
-        </div>
-        <div className={s.applyAllDate}>
-          <input
-            type="text"
-            id="applyAllDate"
-            className={s.applyAllDate}
-            value={applyUserInfo?.applyAllDate}
-            readOnly
-          />
-          <label htmlFor="applyAllDate">신청일</label>
-        </div>
-      </fieldset>
+  const fileUpload = async (fileList) => {
+    const file = fileList[0];
+    const url = "http://localhost:33000/api/v1/files/upload";
 
-      {eventTypeList.map((item, index) => (
-        <div className={s.btns} key={index}>
+    const token = localStorage.getItem("accessToken");
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("refType", "1");
+
+    await axios.post(url, formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  };
+
+  const fileUploaderRef = useRef(null);
+
+  return (
+    <>
+      <div className={s.pageWrap}>
+        <Nav crP={crP} />
+
+        <div className={s.body}>
+          <Aside crP={crP} />
+          <MainContent
+            breadcrumb={breadcrumb}
+            crP={crP}
+            // isOn={modal1IsOn}
+            tableList={employeeList}
+            // onOpen={() => setModal1IsOn(true)}
+          />
+        </div>
+
+        <fieldset className={s.applyUserField}>
+          <div className={s.applyUser}>신청자 정보</div>
+          <div className={s.employeeNo}>
+            <input
+              type="text"
+              id="employeeNo"
+              className={s.employeeNoInput}
+              value={applyUserInfo?.employeeNo || ""}
+              readOnly
+            />
+            <label htmlFor="employeeNo">사원번호</label>
+          </div>
+          <div className={s.name}>
+            <input
+              type="text"
+              id="name"
+              className={s.nameInput}
+              value={applyUserInfo?.name || ""}
+              readOnly
+            />
+            <label htmlFor="name">성명</label>
+          </div>
+          <div className={s.employeeNo}>
+            <input
+              type="text"
+              id="departmentName"
+              className={s.departmentName}
+              value={applyUserInfo?.departmentName || ""}
+              readOnly
+            />
+            <label htmlFor="departmentName">부서</label>
+          </div>
+          <div className={s.position}>
+            <input
+              type="text"
+              id="position"
+              className={s.position}
+              value={applyUserInfo?.position || ""}
+              readOnly
+            />
+            <label htmlFor="position">직급</label>
+          </div>
+          <div className={s.applyAllDate}>
+            <input
+              type="text"
+              id="applyAllDate"
+              className={s.applyAllDate}
+              value={applyUserInfo?.applyAllDate || ""}
+              readOnly
+            />
+            <label htmlFor="applyAllDate">신청일</label>
+          </div>
+        </fieldset>
+
+        {eventTypeList.map((item, index) => (
+          <div className={s.btns} key={index}>
+            <button
+              className={s.event}
+              onClick={() => {
+                setEventType(item);
+              }}
+            >
+              {item}
+            </button>
+          </div>
+        ))}
+
+        <fieldset className={s.applyTargetField}>
+          <div className={s.TargetName}>
+            <input
+              type="text"
+              id="TargetName"
+              className={s.TargetNameInput}
+              onChange={(e) =>
+                setApplyTargetInfo((prev) => ({
+                  ...prev,
+                  // 위의 prev이하 구문 빼먹으면 최신 내용만 남는다.
+                  // return{...prev,}의 다른 표현
+                  TargetName: e.target.value,
+                }))
+              }
+            />
+            <label htmlFor="TargetName">대상자 성명</label>
+          </div>
+          <div className={s.targetRel}>
+            <select
+              name="targetRel"
+              id="targetRel"
+              className={s.targetRelInput}
+              value={applyTargetInfo?.targetRel || ""}
+              onChange={(e) =>
+                setApplyTargetInfo((prev) => ({
+                  ...prev,
+                  targetRel: e.target.value,
+                }))
+              }
+            >
+              <option value="self">본인</option>
+              <option value="spouse">배우자</option>
+              <option value="child">자녀</option>
+              <option value="parent">부모</option>
+            </select>
+            <label htmlFor="targetRel">관계</label>
+          </div>
+          <div className={s.applicationDate}>
+            <input
+              type="date"
+              id="applicationDate"
+              className={s.applicationDateInput}
+              onChange={(e) =>
+                setApplyTargetInfo((prev) => ({
+                  ...prev,
+                  applicationDate: e.target.value,
+                }))
+              }
+            />
+            <label htmlFor="applicationDate">경조일</label>
+          </div>
+          <div className={s.TargetEventPlace}>
+            <input
+              type="text"
+              id="TargetEventPlace"
+              className={s.TargetEventPlaceInput}
+              onChange={(e) =>
+                setApplyTargetInfo((prev) => ({
+                  ...prev,
+                  TargetEventPlace: e.target.value,
+                }))
+              }
+            />
+            <label htmlFor="TargetEventPlace">경조장소</label>
+          </div>
+        </fieldset>
+
+        <fieldset className={s.applyTargetBankField}>
+          <div className={s.bankName}>
+            <select
+              name="bankName"
+              id="bankName"
+              className={s.bankNameInput}
+              value={applyTargetBankInfo?.bankName || ""}
+              onChange={(e) =>
+                setApplyTargetBankInfo((prev) => ({
+                  ...prev,
+                  bankName: e.target.value,
+                }))
+              }
+            >
+              <option value="self">은행</option>
+              <option value="self">은행</option>
+              <option value="self">은행</option>
+            </select>
+            <label htmlFor="bankName">은행</label>
+          </div>
+          <div className={s.bankNumber}>
+            <input
+              type="text"
+              id="bankNumber"
+              className={s.bankNumberInput}
+              onChange={(e) =>
+                setApplyTargetBankInfo((prev) => ({
+                  ...prev,
+                  bankNumber: e.target.value,
+                }))
+              }
+            />
+            <label htmlFor="bankNumber">계좌번호</label>
+          </div>
+          <div className={s.accountHolder}>
+            <input
+              type="text"
+              id="accountHolder"
+              className={s.accountHolderInput}
+              onChange={(e) =>
+                setApplyTargetBankInfo((prev) => ({
+                  ...prev,
+                  accountHolder: e.target.value,
+                }))
+              }
+            />
+            <label htmlFor="accountHolder">예금주</label>
+          </div>
+        </fieldset>
+        <button
+          className={s.apply}
+          onClick={() => console.log(eventType, applyTargetInfo)}
+        >
+          신청하기
+        </button>
+        <div className={s.fileUploader}>
+          <input
+            type="file"
+            hidden
+            ref={fileUploaderRef}
+            onChange={(e) => {
+              console.log(e.target.files);
+              fileUpload(e.target.files);
+            }}
+          />
           <button
-            className={s.event}
             onClick={() => {
-              setEventType(item);
+              fileUploaderRef.current.click();
             }}
           >
-            {item}
+            다운로드
           </button>
         </div>
-      ))}
-
-      <fieldset className={s.applyTargetField}>
-        <div className={s.TargetName}>
-          <input
-            type="text"
-            id="TargetName"
-            className={s.TargetNameInput}
-            onChange={(e) =>
-              setApplyTargetInfo((prev) => ({
-                ...prev,
-                // 위의 prev이하 구문 빼먹으면 최신 내용만 남는다.
-                // return{...prev,}의 다른 표현
-                TargetName: e.target.value,
-              }))
-            }
-          />
-          <label htmlFor="TargetName">대상자 성명</label>
-        </div>
-        <div className={s.targetRel}>
-          <select
-            name="targetRel"
-            id="targetRel"
-            className={s.targetRelInput}
-            value={applyTargetInfo?.targetRel}
-            onChange={(e) =>
-              setApplyTargetInfo((prev) => ({
-                ...prev,
-                targetRel: e.target.value,
-              }))
-            }
-          >
-            <option value="self">본인</option>
-            <option value="spouse">배우자</option>
-            <option value="child">자녀</option>
-            <option value="parent">부모</option>
-          </select>
-          <label htmlFor="targetRel">관계</label>
-        </div>
-        <div className={s.applicationDate}>
-          <input
-            type="date"
-            id="applicationDate"
-            className={s.applicationDateInput}
-            onChange={(e) =>
-              setApplyTargetInfo((prev) => ({
-                ...prev,
-                applicationDate: e.target.value,
-              }))
-            }
-          />
-          <label htmlFor="applicationDate">경조일</label>
-        </div>
-        <div className={s.TargetEventPlace}>
-          <input
-            type="text"
-            id="TargetEventPlace"
-            className={s.TargetEventPlaceInput}
-            onChange={(e) =>
-              setApplyTargetInfo((prev) => ({
-                ...prev,
-                TargetEventPlace: e.target.value,
-              }))
-            }
-          />
-          <label htmlFor="TargetEventPlace">경조장소</label>
-        </div>
-      </fieldset>
-
-      <fieldset className={s.applyTargetBankField}>
-        <div className={s.bankName}>
-          <select
-            name="bankName"
-            id="bankName"
-            className={s.bankNameInput}
-            value={applyTargetBankInfo?.bankName}
-            onChange={(e) =>
-              setApplyTargetBankInfo((prev) => ({
-                ...prev,
-                bankName: e.target.value,
-              }))
-            }
-          >
-            <option value="self">은행</option>
-            <option value="self">은행</option>
-            <option value="self">은행</option>
-          </select>
-          <label htmlFor="bankName">은행</label>
-        </div>
-        <div className={s.bankNumber}>
-          <input
-            type="text"
-            id="bankNumber"
-            className={s.bankNumberInput}
-            onChange={(e) =>
-              setApplyTargetBankInfo((prev) => ({
-                ...prev,
-                bankNumber: e.target.value,
-              }))
-            }
-          />
-          <label htmlFor="bankNumber">계좌번호</label>
-        </div>
-        <div className={s.accountHolder}>
-          <input
-            type="text"
-            id="accountHolder"
-            className={s.accountHolderInput}
-            onChange={(e) =>
-              setApplyTargetBankInfo((prev) => ({
-                ...prev,
-                accountHolder: e.target.value,
-              }))
-            }
-          />
-          <label htmlFor="accountHolder">예금주</label>
-        </div>
-      </fieldset>
-      <button
-        className={s.apply}
-        onClick={() => console.log(eventType, applyTargetInfo)}
-      >
-        신청하기
-      </button>
-    </div>
+      </div>
+    </>
   );
 }

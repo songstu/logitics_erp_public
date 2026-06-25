@@ -3,9 +3,15 @@ import baseApi from "@/api/baseApi";
 import { Bell, BriefcaseBusiness, LogOut } from "lucide-react";
 import s from "./Nav.module.css";
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-export default function Nav({ menu, crP }) {
+export default function Nav({ crP }) {
+  const menu = [
+    { classifyEn: "departmentTap", textKo: "인사관리" },
+    { classifyEn: "attendanceTap", textKo: "근태관리" },
+    { classifyEn: "payrollTap", textKo: "급여관리" },
+    { classifyEn: "dailyWorkerTap", textKo: "일용직관리" },
+  ];
+
   const [navInfo, setNavInfo] = useState();
 
   useEffect(() => {

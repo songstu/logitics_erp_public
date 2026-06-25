@@ -2,10 +2,13 @@
 import s from "./page.module.css";
 import Nav from "@/component/common/Nav.jsx";
 import Aside from "@/component/common/Aside.jsx";
-import Table from "@/component/common/Table.jsx";
+// import Table from "@/component/common/Table.jsx";
 import Modal1 from "@/component/common/Modal1";
 import { useState, useEffect, useRef } from "react";
 import baseApi from "@/api/baseApi";
+import MainContent from "@/component/common/MainContent";
+import SearchCard from "@/component/common/SearchCard";
+import TableCard from "@/component/common/TableCard";
 
 export default function Page() {
   const [modal1IsOn, setModal1IsOn] = useState(false);
@@ -47,44 +50,33 @@ export default function Page() {
     <>
       <Modal1 isOn={modal1IsOn} onClose={() => setModal1IsOn(false)} />
       <div className={s.pageWrap}>
-        <Nav
-          menu={[
-            { classifyEn: "departmentTap", textKo: "인사관리" },
-            { classifyEn: "attendanceTap", textKo: "근태관리" },
-            { classifyEn: "payrollTap", textKo: "급여관리" },
-            { classifyEn: "dailyWorkerTap", textKo: "일용직관리" },
-          ]}
-          crP={crP}
-        />
+        <Nav crP={crP} />
 
         <div className={s.body}>
-          <Aside
-            dummy={[
-              {
-                menu1: { icon: "/User.svg", menu1Name: "인사정보" },
-                menu2: [
-                  "인사정보등록",
-                  "사원명수/인사기록카드",
-                  "인사발령등록",
-                ],
-              },
-              {
-                menu1: { icon: "/HeartHandshake.svg", menu1Name: "경조비관리" },
-                menu2: ["경조비신청", "경조비신청현황"],
-              },
-              {
-                menu1: { icon: "/FileText.svg", menu1Name: "증명서관리" },
-                menu2: ["증명서발급"],
-              },
-            ]}
-            crP={crP}
-          />
-          <Table
+          <Aside crP={crP} />
+          <MainContent
             breadcrumb={["인사관리", "인사정보", "인사정보등록"]}
             crP={crP}
-            isOn={modal1IsOn}
-            tableList={employeeList}
-            onOpen={() => setModal1IsOn(true)}
+            contents1={<SearchCard />}
+            contents2={
+              <TableCard
+                columns={[
+                  { classifyEn: "no", textKo: "NO" },
+                  { classifyEn: "employeeNo", textKo: "사원번호" },
+                  { classifyEn: "name", textKo: "성명" },
+                  { classifyEn: "department", textKo: "부서" },
+                  { classifyEn: "position", textKo: "직급" },
+                  { classifyEn: "hireDate", textKo: "입사일" },
+                  { classifyEn: "phone", textKo: "연락처" },
+                  { classifyEn: "email", textKo: "이메일" },
+                  { classifyEn: "employeeStatusCode", textKo: "재직상태" },
+                  { classifyEn: "put", textKo: "관리" },
+                ]}
+                employees={employeeList}
+                isOn={modal1IsOn}
+                onOpen={() => setModal1IsOn(true)}
+              />
+            }
           />
         </div>
       </div>

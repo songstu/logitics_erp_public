@@ -1,0 +1,340 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+
+.pageWrap {
+  width: 100%;
+  max-width: 1440px;
+  height: 100vh;
+  margin: 0 auto;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  font-family: "Noto Sans KR", sans-serif;
+  box-sizing: border-box;
+}
+
+.panel {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  max-width: 1440px;
+}
+.leftPanel {
+  width: 660px;
+  display: flex;
+  flex-direction: column;
+  padding: 151.5px 64px;
+  gap: 40px;
+  background: linear-gradient(235deg, #0f2547 14.1%, #1e40af 85.9%);
+}
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+.badge {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #93c5fd;
+  font-size: 12px;
+  font-weight: 500;
+}
+.headline {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.headline h1 {
+  font-size: 38px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 45.6px;
+}
+.headline span {
+  font-size: 38px;
+  font-weight: 700;
+  color: #60a5fa;
+  line-height: 45.6px;
+}
+.headline p {
+  font-size: 15px;
+  font-weight: 400;
+  color: #bfdbfe;
+  line-height: 25.5px;
+}
+.stats {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}
+.stats .s2 {
+  position: relative;
+}
+.stats .s2::before,
+.stats .s2::after {
+  content: "";
+  width: 1px;
+  height: 44px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+.stats .s2::before {
+  left: -32px;
+}
+.stats .s2::after {
+  right: -32px;
+}
+.stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+.stats h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+}
+.stats p {
+  font-size: 12px;
+  font-weight: 400;
+  color: #93c5fd;
+}
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.features > div {
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.07);
+}
+.fIcon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ft h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+.ft p {
+  font-size: 12px;
+  font-weight: 400;
+  color: #bfdbfe;
+}
+
+.rightPanel {
+  width: 780px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  background: #fff;
+}
+.formCard {
+  width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.formHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.formHeader h2 {
+  font-size: 30px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 36px;
+}
+.formHeader p {
+  font-size: 15px;
+  font-weight: 400;
+  color: #6b7280;
+  line-height: 18px;
+}
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.ef,
+.pf {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ef > label,
+.pf > label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  line-height: 15.6px;
+}
+.ei,
+.pi {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 16px;
+}
+.ei input {
+  width: 340px;
+}
+.pi input {
+  width: 312px;
+}
+.ei input::placeholder,
+.pi input::placeholder {
+  font-size: 14px;
+  font-weight: 400px;
+  color: #9ca3af;
+  line-height: 16.8px;
+}
+.ei input:focus,
+.pi input:focus {
+  outline: none;
+}
+.ei:has(input:focus),
+.pi:has(input:focus) {
+  border-color: #9ca3af;
+}
+
+.passwordToggleInput {
+  display: none;
+}
+.passwordToggleLabel {
+  cursor: pointer;
+}
+.passwordToggleLabel .eye {
+  display: none;
+}
+.passwordToggleLabel .eyeoff {
+  display: inline;
+}
+.passwordToggle .passwordToggleInput:checked + .passwordToggleLabel .eye {
+  display: inline;
+}
+.passwordToggle .passwordToggleInput:checked + .passwordToggleLabel .eyeoff {
+  display: none;
+}
+
+.opts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.rem {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  align-items: center;
+}
+.rem > label {
+  font-size: 13px;
+  font-weight: 400;
+  color: #6b7280;
+  cursor: pointer;
+}
+.findPassword {
+  font-size: 13px;
+  font-weight: 500;
+  color: #2563eb;
+  cursor: pointer;
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.loginBtn {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 10px;
+  background-color: #1e3a5f;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.actions > span {
+  font-size: 13px;
+  font-weight: 400px;
+  color: #9ca3af;
+  position: relative;
+}
+.actions > span::before,
+.actions > span::after {
+  content: "";
+  width: 176px;
+  height: 1px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #e5e7eb;
+}
+.actions > span::before {
+  left: -188px;
+}
+.actions > span::after {
+  right: -188px;
+}
+
+.kakaoLogin {
+  width: 400px;
+  cursor: pointer;
+}
+
+.sl {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+.sl p {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b7280;
+}
+.sl span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2563eb;
+  cursor: pointer;
+}
