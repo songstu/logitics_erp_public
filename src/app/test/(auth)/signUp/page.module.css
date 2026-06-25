@@ -1,293 +1,316 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
 
-.pageWrap{
-    width: 100%;
-    max-width: 1440px;
-    height: 100vh;
-    margin: 0 auto;
-    user-select: none;
-    display: flex;
-    flex-direction: column;
-    font-family: "Noto Sans KR", sans-serif;
-    box-sizing: border-box;
-}
-
-.panel{
-    display: flex;
-    flex-direction: row;
-    width: 100vw;
-    max-width: 1440px;
-}
-.leftPanel{
-    width: 660px;
-    display: flex;
-    flex-direction: column;
-    padding: 151.5px 64px;
-    gap: 40px;
-    background: linear-gradient(235deg, #0F2547 14.1%, #1E40AF 85.9%);
-}
-.brand{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-}
-.badge{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    padding: 7px 16px;
-    border-radius: 20px;
-    border: none;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #93C5FD;
-    font-size: 12px;
-    font-weight: 500;
-}
-.headline{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-}
-.headline h1{
-    font-size: 38px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 45.6px;
-}
-.headline span{
-    font-size: 38px;
-    font-weight: 700;
-    color: #60A5FA;
-    line-height: 45.6px;
-}
-.headline p{
-    font-size: 15px;
-    font-weight: 400;
-    color: #BFDBFE;
-    line-height: 25.5px;
-}
-.checklist{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 548px;
-}
-.checklist > div{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 16px;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.06);
-    color: #fff;
-    font-size: 13px;
-    font-weight: 500;
-}
-.trialBudge{
-    width: 548px;
-    background-color: rgba(255, 255, 255, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 14px 20px;
-    color: #FCD34D;
-    font-size: 13px;
-    font-weight: 600;
+.pageWrap {
+  width: 100%;
+  max-width: 1440px;
+  height: 100vh;
+  margin: 0 auto;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  font-family: "Noto Sans KR", sans-serif;
+  box-sizing: border-box;
 }
 
+.panel {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  max-width: 1440px;
+}
+.leftPanel {
+  width: 660px;
+  display: flex;
+  flex-direction: column;
+  padding: 151.5px 64px;
+  gap: 40px;
+  background: linear-gradient(235deg, #0f2547 14.1%, #1e40af 85.9%);
+}
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+.badge {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #93c5fd;
+  font-size: 12px;
+  font-weight: 500;
+}
+.headline {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+.headline h1 {
+  font-size: 38px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 45.6px;
+}
+.headline span {
+  font-size: 38px;
+  font-weight: 700;
+  color: #60a5fa;
+  line-height: 45.6px;
+}
+.headline p {
+  font-size: 15px;
+  font-weight: 400;
+  color: #bfdbfe;
+  line-height: 25.5px;
+}
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 548px;
+}
+.checklist > div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+}
+.trialBudge {
+  width: 548px;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  color: #fcd34d;
+  font-size: 13px;
+  font-weight: 600;
+}
 
-.rightPanel{
-    width: 780px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    background: #fff;
+.rightPanel {
+  width: 780px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  background: #fff;
 }
-.formCard{
-    width: 560px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+.formCard {
+  width: 560px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
-.formHeader{
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+.formHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
-.formHeader h2{
-    font-size: 28px;
-    font-weight: 700;
-    color: #111827;
-    line-height: 33.6px;
+.formHeader h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  line-height: 33.6px;
 }
-.formHeader p{
-    font-size: 14px;
-    font-weight: 400;
-    color: #6B7280;
-    line-height: 16.8px;
+.formHeader p {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b7280;
+  line-height: 16.8px;
 }
-.formBody{
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+.formBody {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
-.formBody > div:not(.pwHint){
-    display: flex;
-    flex-direction: row;
-    gap: 14px;
+.formBody > div:not(.pwHint) {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
 }
-.formBody > div > div{
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    width: calc(50% - 7px);
+.formBody > div > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: calc(50% - 7px);
 }
-.formBody > div > div > label{
-    font-size: 13px;
-    font-weight: 500;
-    line-height: 15.6px;
-    color: #374151;
+.formBody > div > div > label {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 15.6px;
+  color: #374151;
 }
-.formBody > div > div > div, .formBody > div > div > div, .pwI, .cpwI{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    padding: 0 14px;
-    border-radius: 10px;
-    border: 1px solid #D1D5DB;
-    width: 100%;
-    height: 48px;
-    color: #9CA3AF;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 16.8px;
+.formBody > div > div > div,
+.formBody > div > div > div,
+.pwI,
+.cpwI {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  width: 100%;
+  height: 48px;
+  color: #111827;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.8px;
 }
-.formBody > div > div > div > select{width: 100%; cursor: pointer;}
-.formBody > div > div > div > select option{
-    color: #111827;
+.formBody > div > div > div > select {
+  width: 100%;
+  cursor: pointer;
+}
+.formBody > div > div > div > select option {
+  color: #111827;
 }
 
-
-.formBody > div > div > div > input:focus, .formBody > div > div > div > select:focus{outline: none;}
-.formBody > div > div > div:has(input:focus){border-color: #9CA3AF;}
+.formBody > div > div > div > input:focus,
+.formBody > div > div > div > select:focus {
+  outline: none;
+}
+.formBody > div > div > div:has(input:focus) {
+  border-color: #9ca3af;
+}
 /* .pwI input:focus, .cpwI input:focus{outline: none;}
 .pwI:has(input:focus), .cpwI:has(input:focus){border-color: #9CA3AF;} */
 
-.passwordToggleInput {display: none;}
-.passwordToggleLabel {cursor: pointer;}
-.passwordToggleLabel .eye { display: none; }
-.passwordToggleLabel .eyeoff { display: inline; }
-.passwordToggle .passwordToggleInput:checked + .passwordToggleLabel .eye { display: inline; }
-.passwordToggle .passwordToggleInput:checked + .passwordToggleLabel .eyeoff { display: none; }
-
-.pwHint{
-    display: flex;
-    flex-direction: row;
-    gap: 6px;
-    align-items: center;
-    color: #9CA3AF;    
-    font-size: 12px;
-    line-height: 14.4px;
-    font-weight: 400;
+.passwordToggleInput {
+  display: none;
+}
+.passwordToggleLabel {
+  cursor: pointer;
+}
+.passwordToggleLabel .eye {
+  display: none;
+}
+.passwordToggleLabel .eyeoff {
+  display: inline;
+}
+.passwordToggle .passwordToggleInput:checked + .passwordToggleLabel .eye {
+  display: inline;
+}
+.passwordToggle .passwordToggleInput:checked + .passwordToggleLabel .eyeoff {
+  display: none;
 }
 
-.terms{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 16px;
-    border: 1px solid #E5E7EB;
-    border-radius: 10px;
-    background-color: #F9FAFB;
-}
-.terms input{
-    display: none;
+.pwHint {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  align-items: center;
+  color: #9ca3af;
+  font-size: 12px;
+  line-height: 14.4px;
+  font-weight: 400;
 }
 
-.terms label, .terms span{
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 15.6px;
+.terms {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background-color: #f9fafb;
 }
-.terms label{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
-    color: #374151; 
-    cursor: pointer;
-}
-.terms label p{
-    width: 422px;
+.terms input {
+  display: none;
 }
 
-.checkBoxRedesign{
-    width: 18px;
-    height: 18px;
-    border-radius: 5px;
-    background-color: #1E3A5F;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.terms label,
+.terms span {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 15.6px;
+}
+.terms label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  color: #374151;
+  cursor: pointer;
+}
+.terms label p {
+  width: 422px;
 }
 
-.terms span{
-    color: #2563EB;
-    white-space: nowrap;
-    cursor: pointer;
-}
-.submitAction{
-    width: 100%;
-}
-.submitBtn{
-    width: 100%;
-    height: 50px;
-    background-color: #1E3A5F;
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-}
-.submitBtn:disabled{
-    cursor: default;
-    background-color: gray;
-}
-.loginLink{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 6px;
-    font-size: 14px;
-    align-items: center;
-    justify-content: center;
-}
-.loginLink p{
-    font-weight: 400;
-    color: #6B7280;
-}
-.loginLink span{
-    font-weight: 600;
-    color: #2563EB;
-    cursor: pointer;
+.checkBoxRedesign {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  background-color: #1e3a5f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-
+.terms span {
+  color: #2563eb;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.submitAction {
+  width: 100%;
+}
+.submitBtn {
+  width: 100%;
+  height: 50px;
+  background-color: #1e3a5f;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+.submitBtn:disabled {
+  cursor: default;
+  background-color: gray;
+}
+.loginLink {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  font-size: 14px;
+  align-items: center;
+  justify-content: center;
+}
+.loginLink p {
+  font-weight: 400;
+  color: #6b7280;
+}
+.loginLink span {
+  font-weight: 600;
+  color: #2563eb;
+  cursor: pointer;
+}
+.formBody input {
+  color: #111827;
+}

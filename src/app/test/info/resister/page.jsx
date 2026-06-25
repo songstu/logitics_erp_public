@@ -39,7 +39,7 @@ export default function Page() {
     crPAsi: "인사정보등록",
     crPTable: "인사정보등록",
     crPInfo: "직원의 인사정보를 등록하고 관리합니다.",
-    newResist: "신규등록",
+    plusBtnText: "신규등록",
   };
 
   useEffect(() => {
@@ -77,6 +77,7 @@ export default function Page() {
                 onOpen={() => setModal1IsOn(true)}
               />
             }
+            onOpen={() => setModal1IsOn(true)}
           />
         </div>
       </div>
